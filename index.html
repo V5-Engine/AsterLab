@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aster Lab | Advanced Medical Diagnostics & Laboratory Services</title>
+  <meta name="description" content="Aster Lab is a next-generation medical diagnostic laboratory providing ultra-precise pathology, genomics, blood testing, and safe doorstep sample collection.">
+  <meta name="keywords" content="Aster Lab, diagnostic laboratory, blood test, health checkup, home sample collection, pathology, diabetes screening, cardiac profile">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Aster Lab - Precision Diagnostics, Better Health Decisions">
+  <meta property="og:description" content="Reliable medical laboratory testing powered by modern robotics and trusted by thousands of families.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Ambient High-Tech Medical Background -->
+  <div class="ambient-background">
+    <div class="ambient-grid"></div>
+  </div>
+
+  <!-- 1. Page Preloader (Item 20) -->
+  <div id="page-preloader" aria-hidden="true">
+    <div class="preloader-brand">
+      <div class="preloader-logo">ASTER LAB</div>
+      <div class="preloader-sub">Next-Gen Diagnostics</div>
+    </div>
+    <div class="ecg-container">
+      <svg viewBox="0 0 200 60" style="width: 100%; height: 100%;">
+        <path class="ecg-path" d="M 0 30 L 45 30 L 55 12 L 65 52 L 75 22 L 85 42 L 95 30 L 200 30" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Announcement Bar with Pulse Badge (Item 4) -->
+  <div class="announcement-bar">
+    <span class="announcement-badge">
+      <span class="pulse-dot"></span> NEW
+    </span>
+    <span>Doorstep Home Collection Service now available across the city!</span>
+    <a href="./home-collection.html" style="color: var(--accent-cyan); text-decoration: underline; margin-left: 0.5rem; font-weight: 600;">Schedule Now &rarr;</a>
+  </div>
+
+  <!-- Sticky Modern Navigation Bar (Item 4) -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Brand Logo -->
+        <a href="./index.html" class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <span>ASTER<span style="color: #0284C7;">LAB</span></span>
+          <span class="brand-tag">GEN-4</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-menu">
+          <li><a href="./index.html" class="nav-link active">Home</a></li>
+          <li><a href="./tests.html" class="nav-link">Tests</a></li>
+          <li><a href="./offers.html" class="nav-link">Offers</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Side Nav Actions -->
+        <div class="nav-actions">
+          <a href="./appointment.html" class="btn btn-primary btn-sm">Book Appointment</a>
+          <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 3. Hero Section (Item 3) -->
+  <section class="section hero-section" style="padding-top: 4rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="hero-grid" style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; align-items: center;">
+        
+        <!-- Left Hero Content -->
+        <div class="hero-content reveal-fade-up">
+          <div class="section-tag" style="margin-bottom: 1.25rem;">
+            <svg style="width: 14px; height: 14px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            PRECISION DIAGNOSTICS &bull; CERTIFIED NABL &bull; CAP ACCREDITED
+          </div>
+          <h1 class="hero-title" style="font-size: 3.4rem; font-weight: 800; line-height: 1.12; margin-bottom: 1.5rem; color: #0A1128;">
+            Advanced Diagnostics.<br>
+            <span style="background: linear-gradient(135deg, #0284C7 0%, #00D2D3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              Better Health Decisions.
+            </span>
+          </h1>
+          <p class="hero-desc" style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2.2rem; max-width: 540px;">
+            Reliable laboratory testing powered by modern automated robotics, ultra-sensitive chemiluminescence, and trusted by your family.
+          </p>
+
+          <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="./appointment.html" class="btn btn-primary btn-lg">
+              Book an Appointment
+              <svg style="width: 18px; height: 18px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="./home-collection.html" class="btn btn-secondary btn-lg">
+              <svg style="width: 18px; height: 18px; stroke: #0284C7;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              Home Collection
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div style="display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(226, 232, 240, 0.8);">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--text-muted); font-weight: 600;">
+              <svg style="width: 18px; height: 18px; stroke: #10B981;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M20 6L9 17l-5-5"></path></svg>
+              Same-Day Digital Reports
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--text-muted); font-weight: 600;">
+              <svg style="width: 18px; height: 18px; stroke: #10B981;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M20 6L9 17l-5-5"></path></svg>
+              100% Barcoded Samples
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Futuristic Diagnostic Visual (Item 3) -->
+        <div class="hero-visual reveal-scale delay-200" style="position: relative;">
+          <!-- Glowing Orb Background -->
+          <div style="position: absolute; inset: -15px; background: radial-gradient(circle, rgba(0, 210, 211, 0.22) 0%, rgba(99, 102, 241, 0.15) 50%, transparent 70%); filter: blur(35px); z-index: 0; pointer-events: none;"></div>
+
+          <!-- Main Diagnostic Visual Card -->
+          <div class="hero-visual-card glass-card glow-border" style="position: relative; z-index: 1; padding: 2.2rem; border-radius: var(--radius-xl); background: rgba(255, 255, 255, 0.88); transition: transform 0.2s ease-out;">
+            <!-- Header of visual -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.8rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #10B981; box-shadow: 0 0 10px #10B981;"></div>
+                <span style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: #0A1128;">ASTER ANALYZER 4000</span>
+              </div>
+              <span style="font-size: 0.75rem; background: rgba(2, 132, 199, 0.1); color: #0284C7; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: var(--radius-full);">ONLINE</span>
+            </div>
+
+            <!-- Animated Medical Wave Graphic -->
+            <div style="background: #0A1128; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.8rem; position: relative; overflow: hidden;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A3B8; margin-bottom: 0.75rem;">
+                <span>SPECIMEN ACCURACY</span>
+                <span style="color: var(--accent-cyan); font-weight: 700;">99.98%</span>
+              </div>
+              <svg viewBox="0 0 300 80" style="width: 100%; height: 70px;">
+                <path d="M 0 40 Q 30 10, 60 40 T 120 40 T 150 20 T 170 65 T 190 10 T 210 50 T 240 40 T 300 40" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5" />
+                <path d="M 0 40 Q 30 10, 60 40 T 120 40 T 150 20 T 170 65 T 190 10 T 210 50 T 240 40 T 300 40 L 300 80 L 0 80 Z" fill="url(#wave-gradient)" opacity="0.18" />
+                <defs>
+                  <linearGradient id="wave-gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#00D2D3" />
+                    <stop offset="100%" stop-color="#0A1128" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- Diagnostic Metric Bars -->
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;">
+                  <span>Automated Chemiluminescence</span>
+                  <span style="color: #0284C7;">Calibrated</span>
+                </div>
+                <div style="height: 6px; background: #E2E8F0; border-radius: 99px; overflow: hidden;">
+                  <div style="width: 94%; height: 100%; background: var(--accent-gradient);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;">
+                  <span>Turnaround Time Optimization</span>
+                  <span style="color: #10B981;">3.8 hrs avg</span>
+                </div>
+                <div style="height: 6px; background: #E2E8F0; border-radius: 99px; overflow: hidden;">
+                  <div style="width: 88%; height: 100%; background: linear-gradient(90deg, #10B981, #00D2D3);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Badge 1: Real-Time Results -->
+          <div class="glass-card floating-card-1" style="position: absolute; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); background: rgba(255, 255, 255, 0.94); top: -20px; right: -25px; padding: 0.85rem 1.25rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 2; display: flex; align-items: center; gap: 0.75rem;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 18px; height: 18px; stroke: #10B981;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">STATUS</div>
+              <div style="font-size: 0.85rem; font-weight: 700; color: #0A1128;">Zero Contamination</div>
+            </div>
+          </div>
+
+          <!-- Floating Badge 2: Phlebotomy Doorstep Active -->
+          <div class="glass-card floating-card-2" style="position: absolute; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); background: rgba(255, 255, 255, 0.94); bottom: -20px; left: -25px; padding: 0.85rem 1.25rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 2; display: flex; align-items: center; gap: 0.75rem;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(2, 132, 199, 0.15); display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 18px; height: 18px; stroke: #0284C7;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">DOORSTEP FLEET</div>
+              <div style="font-size: 0.85rem; font-weight: 700; color: #0A1128;">Temperature Controlled</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Quick Action Cards (Item 32) -->
+  <section class="section" style="padding-top: 1rem; padding-bottom: 4rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <!-- Action 1: Book Lab Visit -->
+        <a href="./appointment.html" class="glass-card reveal-fade-up" style="padding: 2rem; display: flex; align-items: flex-start; gap: 1.25rem; border: 1px solid rgba(2, 132, 199, 0.15);">
+          <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(2, 132, 199, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg style="width: 26px; height: 26px; stroke: #0284C7;" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem; color: #0A1128;">Book Lab Appointment</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">Walk into our robotic precision diagnostic center with zero wait times.</p>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0284C7; display: inline-flex; align-items: center; gap: 0.3rem;">Choose Slot &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Action 2: Home Sample Collection -->
+        <a href="./home-collection.html" class="glass-card reveal-fade-up delay-100" style="padding: 2rem; display: flex; align-items: flex-start; gap: 1.25rem; border: 1px solid rgba(0, 210, 211, 0.3);">
+          <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(0, 210, 211, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg style="width: 26px; height: 26px; stroke: #0D9488;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem; color: #0A1128;">Home Collection</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">Certified phlebotomists arrive at your doorstep in safe, cold-chain gear.</p>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #0D9488; display: inline-flex; align-items: center; gap: 0.3rem;">Schedule Doorstep &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Action 3: View Offers -->
+        <a href="./offers.html" class="glass-card reveal-fade-up delay-200" style="padding: 2rem; display: flex; align-items: flex-start; gap: 1.25rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+          <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: rgba(99, 102, 241, 0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg style="width: 26px; height: 26px; stroke: #6366F1;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          </div>
+          <div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem; color: #0A1128;">Latest Health Packages</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">Explore curated diagnostic packages up to 60% discounted for families.</p>
+            <span style="font-size: 0.85rem; font-weight: 700; color: #6366F1; display: inline-flex; align-items: center; gap: 0.3rem;">Explore Packages &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. "Newly Arrived" / Latest Offers Section (Dynamically Loaded from Supabase) -->
+  <section class="section" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px);">
+    <div class="container">
+      <div class="section-header reveal-fade-up">
+        <span class="section-tag">
+          <svg style="width: 13px; height: 13px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          DYNAMIC SUPABASE FEED
+        </span>
+        <h2 class="section-title">What's New at Aster Lab</h2>
+        <p class="section-subtitle">Explore our latest health packages and precision diagnostic offers, updated live from our clinical registry.</p>
+      </div>
+
+      <!-- Offers Grid Container loaded via js/offers.js -->
+      <div id="offers-container" class="offers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem;">
+        <!-- Dynamic content injected here -->
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;" class="reveal-fade-up">
+        <a href="./offers.html" class="btn btn-secondary">
+          View All Health Packages
+          <svg style="width: 16px; height: 16px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Services & Test Spectrum Section (Item 7) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal-fade-up">
+        <span class="section-tag">CLINICAL EXCELLENCE</span>
+        <h2 class="section-title">Precision Diagnostic Services</h2>
+        <p class="section-subtitle">State-of-the-art pathology spanning molecular diagnostics, oncology markers, endocrinology, and routine wellness.</p>
+      </div>
+
+      <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+        
+        <!-- Service 1 -->
+        <div class="glass-card reveal-fade-up" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(2, 132, 199, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #0284C7;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Blood Tests & CBC</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Complete blood count, ESR, platelet aggregation, and advanced automated morphology analysis.</p>
+          <a href="./tests.html?cat=blood" style="font-size: 0.85rem; font-weight: 700; color: #0284C7; display: inline-flex; align-items: center; gap: 0.35rem;">View Parameters &rarr;</a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="glass-card reveal-fade-up delay-100" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(0, 210, 211, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #0D9488;" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Full Body Checkup</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">85+ vital biomarkers evaluating liver, kidney, cardiac risk, thyroid, and electrolyte balance.</p>
+          <a href="./tests.html?cat=wellness" style="font-size: 0.85rem; font-weight: 700; color: #0D9488; display: inline-flex; align-items: center; gap: 0.35rem;">View Packages &rarr;</a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="glass-card reveal-fade-up delay-200" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(245, 158, 11, 0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #D97706;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Diabetes Care</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">High-precision HPLC HbA1c testing, Fasting Blood Sugar, and Insulin resistance calculations.</p>
+          <a href="./tests.html?cat=diabetes" style="font-size: 0.85rem; font-weight: 700; color: #D97706; display: inline-flex; align-items: center; gap: 0.35rem;">View Tests &rarr;</a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="glass-card reveal-fade-up delay-300" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(239, 68, 68, 0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #EF4444;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Heart Health Profile</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">hs-CRP, Lipid Profile, Troponin I, and Apolipoprotein metrics for cardiovascular evaluation.</p>
+          <a href="./tests.html?cat=cardiac" style="font-size: 0.85rem; font-weight: 700; color: #EF4444; display: inline-flex; align-items: center; gap: 0.35rem;">Explore Cardiac &rarr;</a>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="glass-card reveal-fade-up" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(99, 102, 241, 0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #6366F1;" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Thyroid & Hormones</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Ultra-sensitive TSH, Free T3, Free T4, AMH, Testosterone, and cortisol circadian rhythm profiling.</p>
+          <a href="./tests.html?cat=hormone" style="font-size: 0.85rem; font-weight: 700; color: #6366F1; display: inline-flex; align-items: center; gap: 0.35rem;">View Panels &rarr;</a>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="glass-card reveal-fade-up delay-100" style="padding: 2rem;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+            <svg style="width: 24px; height: 24px; stroke: #059669;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.6rem;">Vitamin & Mineral Duo</h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Active Vitamin B12, Total 25-OH Vitamin D3, Serum Ferritin, Zinc, and Calcium levels.</p>
+          <a href="./tests.html?cat=vitamins" style="font-size: 0.85rem; font-weight: 700; color: #059669; display: inline-flex; align-items: center; gap: 0.35rem;">View Details &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Why Choose Aster Lab / Animated Statistics (Item 8) -->
+  <section class="section" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(241, 245, 249, 0.7) 100%);">
+    <div class="container">
+      <div class="section-header reveal-fade-up">
+        <span class="section-tag">ACCURACY & TRUST</span>
+        <h2 class="section-title">Why Choose Aster Lab</h2>
+        <p class="section-subtitle">Clinical precision underpinned by robotic laboratory systems and stringent six-sigma quality standards.</p>
+      </div>
+
+      <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+        
+        <div class="glass-card stat-card reveal-fade-up" style="padding: 2.2rem 1.5rem; text-align: center;">
+          <div class="stat-val counter-val" data-target="10000" data-suffix="+" style="font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: #0284C7; line-height: 1.1; margin-bottom: 0.5rem;">0</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #0A1128; margin-bottom: 0.25rem;">Patients Served</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Trusted by families & hospitals</p>
+        </div>
+
+        <div class="glass-card stat-card reveal-fade-up delay-100" style="padding: 2.2rem 1.5rem; text-align: center;">
+          <div class="stat-val counter-val" data-target="50" data-suffix="+" style="font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: #00D2D3; line-height: 1.1; margin-bottom: 0.5rem;">0</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #0A1128; margin-bottom: 0.25rem;">Diagnostic Tests</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Comprehensive clinical spectrum</p>
+        </div>
+
+        <div class="glass-card stat-card reveal-fade-up delay-200" style="padding: 2.2rem 1.5rem; text-align: center;">
+          <div class="stat-val counter-val" data-target="24" data-suffix="/7" style="font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: #6366F1; line-height: 1.1; margin-bottom: 0.5rem;">0</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #0A1128; margin-bottom: 0.25rem;">Clinical Support</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Pathologist consultations available</p>
+        </div>
+
+        <div class="glass-card stat-card reveal-fade-up delay-300" style="padding: 2.2rem 1.5rem; text-align: center;">
+          <div class="stat-val counter-val" data-target="99" data-suffix=".9%" style="font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: #10B981; line-height: 1.1; margin-bottom: 0.5rem;">0</div>
+          <div style="font-size: 1.05rem; font-weight: 700; color: #0A1128; margin-bottom: 0.25rem;">Reliable Precision</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Internal & external quality control</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Home Collection Promotion Section (Item 9) -->
+  <section class="section" style="padding: 5.5rem 0; position: relative;">
+    <div class="container">
+      <div class="glass-card glow-border reveal-fade-up" style="padding: 3.5rem 3rem; background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.95) 100%); border: 1.5px solid rgba(0, 210, 211, 0.35); border-radius: var(--radius-xl);">
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center;">
+          
+          <div>
+            <span class="section-tag" style="background: rgba(0, 210, 211, 0.15); color: #0D9488; border-color: rgba(0, 210, 211, 0.3);">
+              DOORSTEP PHLEBOTOMY
+            </span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #0A1128;">Your Health. Your Home.</h2>
+            <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">
+              Skip traffic and diagnostic waiting rooms. Our certified phlebotomists arrive at your doorstep in sterile, sealed PPE with ice-packs and temperature-monitored specimen containers.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.2rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem; color: #0A1128;">
+                <span style="color: #10B981; font-weight: 800;">✓</span> Convenient Slots
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem; color: #0A1128;">
+                <span style="color: #10B981; font-weight: 800;">✓</span> 100% Sterile & Safe
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem; color: #0A1128;">
+                <span style="color: #10B981; font-weight: 800;">✓</span> Certified Phlebotomists
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem; color: #0A1128;">
+                <span style="color: #10B981; font-weight: 800;">✓</span> Cold-Chain Transport
+              </div>
+            </div>
+
+            <a href="./home-collection.html" class="btn btn-primary btn-lg">
+              Schedule Home Collection
+              <svg style="width: 18px; height: 18px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+
+          <!-- Feature graphic card -->
+          <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); text-align: center;">
+            <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--accent-gradient); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 4px 18px var(--accent-cyan-glow);">
+              <svg style="width: 34px; height: 34px; stroke: #0A1128;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: #0A1128;">Zero Travel Required</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+              Ideal for elderly parents, expectant mothers, busy working professionals, and early morning fasting blood glucose profiles.
+            </p>
+            <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #0284C7;">
+              6:30 AM – 8:30 PM Slots
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 33. "How It Works" 4-Step Process Section -->
+  <section class="section" style="background: rgba(255, 255, 255, 0.7);">
+    <div class="container">
+      <div class="section-header reveal-fade-up">
+        <span class="section-tag">STREAMLINED CARE</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Experience a frictionless, transparent diagnostic journey from booking to verified medical reporting.</p>
+      </div>
+
+      <div class="process-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.75rem; position: relative;">
+        
+        <!-- Step 1 -->
+        <div class="glass-card reveal-fade-up" style="padding: 2rem; position: relative;">
+          <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: rgba(2, 132, 199, 0.25); line-height: 1; margin-bottom: 1rem;">01</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: #0A1128;">Book Your Test</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">Select required test packages online for a center visit or doorstep sample pickup.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card reveal-fade-up delay-100" style="padding: 2rem; position: relative;">
+          <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: rgba(0, 210, 211, 0.35); line-height: 1; margin-bottom: 1rem;">02</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: #0A1128;">Sample Collection</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">Pain-free phlebotomy with barcoded single-use vacutainers for 100% traceability.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card reveal-fade-up delay-200" style="padding: 2rem; position: relative;">
+          <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: rgba(99, 102, 241, 0.25); line-height: 1; margin-bottom: 1rem;">03</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: #0A1128;">Robotic Testing</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">Automated multi-level analysis verified by senior consultant pathologists.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="glass-card reveal-fade-up delay-300" style="padding: 2rem; position: relative;">
+          <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: rgba(16, 185, 129, 0.3); line-height: 1; margin-bottom: 1rem;">04</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.6rem; color: #0A1128;">Get Your Results</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">Instant SMS & email notification with secure smart PDF digital lab reports.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 34. Patient Trust & Testimonials Carousel -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal-fade-up">
+        <span class="section-tag">PATIENT VOICES</span>
+        <h2 class="section-title">Trusted By Families</h2>
+        <p class="section-subtitle">Real experiences from patients who rely on Aster Lab for precision diagnostic care.</p>
+      </div>
+
+      <div class="testimonials-container" style="max-width: 820px; margin: 0 auto; overflow: hidden; position: relative;">
+        
+        <div class="testimonials-track" style="display: flex; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+          
+          <!-- Slide 1 -->
+          <div class="testimonial-slide" style="min-width: 100%; padding: 1rem;">
+            <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; border-radius: var(--radius-xl);">
+              <div style="color: #F59E0B; font-size: 1.25rem; margin-bottom: 1rem;">★★★★★</div>
+              <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic;">
+                "The doorstep sample collection was remarkably smooth. The phlebotomist arrived right on time at 7:00 AM, wore full sterile gear, and the digital reports arrived on my phone by evening."
+              </p>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #0A1128;">Dr. Meenakshi Sundaram</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Consultant Pediatrician, Bengaluru</div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="testimonial-slide" style="min-width: 100%; padding: 1rem;">
+            <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; border-radius: var(--radius-xl);">
+              <div style="color: #F59E0B; font-size: 1.25rem; margin-bottom: 1rem;">★★★★★</div>
+              <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic;">
+                "Aster Lab feels like a diagnostic center from the year 2035. Impeccable cleanliness, robotic automation, and highly competitive pricing on full body wellness packages."
+              </p>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #0A1128;">Arvind Nambiar</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Software Architect</div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="testimonial-slide" style="min-width: 100%; padding: 1rem;">
+            <div class="glass-card" style="padding: 3rem 2.5rem; text-align: center; border-radius: var(--radius-xl);">
+              <div style="color: #F59E0B; font-size: 1.25rem; margin-bottom: 1rem;">★★★★★</div>
+              <p style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic;">
+                "Booked the Comprehensive Cardiac and Diabetes profile for my elderly parents. The report layout with graphical reference intervals made discussing results with our family doctor so simple."
+              </p>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #0A1128;">Sunita Rao</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Health Advocate</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
+          <button class="btn btn-secondary btn-sm carousel-prev" style="width: 42px; height: 42px; border-radius: 50%; padding: 0;" aria-label="Previous Testimonial">
+            &larr;
+          </button>
+          <div class="carousel-dots" style="display: flex; gap: 8px;"></div>
+          <button class="btn btn-secondary btn-sm carousel-next" style="width: 42px; height: 42px; border-radius: 50%; padding: 0;" aria-label="Next Testimonial">
+            &rarr;
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="section" style="padding-top: 1rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="glass-card" style="background: linear-gradient(135deg, #0A1128 0%, #1E293B 100%); color: #FFFFFF; padding: 4rem 3rem; text-align: center; border-radius: var(--radius-xl); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(0, 210, 211, 0.25) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <h2 style="font-size: 2.5rem; color: #FFFFFF; margin-bottom: 1rem;">Ready for Next-Gen Diagnostic Care?</h2>
+        <p style="color: #94A3B8; font-size: 1.1rem; max-width: 580px; margin: 0 auto 2.5rem auto;">
+          Book your center appointment or schedule a safe home collection in under 60 seconds with instant reference tracking.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="./appointment.html" class="btn btn-primary btn-lg">Book Lab Visit</a>
+          <a href="./home-collection.html" class="btn btn-secondary btn-lg" style="background: rgba(255, 255, 255, 0.1); color: #FFFFFF; border-color: rgba(255, 255, 255, 0.25);">Schedule Home Pickup</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 30. Futuristic Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Col 1: Brand & Accreditations -->
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            </div>
+            <span>ASTER<span style="color: #00D2D3;">LAB</span></span>
+          </div>
+          <p class="footer-desc">
+            Advanced diagnostic laboratory powered by modern technology, clinical rigor, and compassionate healthcare.
+          </p>
+          <div class="footer-cert-badges">
+            <span class="footer-cert-badge">NABL ISO 15189</span>
+            <span class="footer-cert-badge">CAP ACCREDITED</span>
+            <span class="footer-cert-badge">ICMR APPROVED</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./tests.html">Diagnostic Tests</a></li>
+            <li><a href="./offers.html">Health Packages</a></li>
+            <li><a href="./about.html">About Aster Lab</a></li>
+            <li><a href="./contact.html">Contact & Locations</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Services -->
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="./tests.html?cat=blood">Blood Pathology</a></li>
+            <li><a href="./offers.html">Full Body Checkups</a></li>
+            <li><a href="./home-collection.html">Doorstep Collection</a></li>
+            <li><a href="./appointment.html">Book Lab Visit</a></li>
+            <li><a href="./admin/index.html">Staff Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div>
+          <h4 class="footer-col-title">Contact Laboratory</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+91 (80) 4567 8900<br>Toll Free: 1800 102 8921</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>reports@asterlab.com<br>support@asterlab.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Aster Lab Central Facility, Outer Ring Road, Tech Corridor, Bengaluru</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Aster Lab. All Rights Reserved. Precision. Technology. Care.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Diagnostics</a>
+          <a href="./admin/index.html">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 25. Floating Mobile Action Bar -->
+  <aside class="mobile-action-dock" aria-label="Mobile Quick Actions">
+    <div class="dock-items">
+      <a href="tel:+918045678900" class="dock-btn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>Call</span>
+      </a>
+      <a href="./contact.html" class="dock-btn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>Location</span>
+      </a>
+      <a href="./appointment.html" class="dock-btn dock-btn-primary">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <span>Book</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Supabase & App Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./js/config.js"></script>
+  <script src="./js/supabase.js"></script>
+  <script src="./js/animations.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/offers.js"></script>
+</body>
+</html>
