@@ -12,7 +12,7 @@
  */
 
 const SUPABASE_CONFIG = {
-    URL: "https://hnhrmglmtplndrgrwxiy.supabase.co/rest/v1/",
+    URL: "https://hnhrmglmtplndrgrwxiy.supabase.co",
     ANON_KEY: "sb_publishable_LJdch0qwlRdIKSOAdkqBMw_RSyNvnqV"
 };
 
