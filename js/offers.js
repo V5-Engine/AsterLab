@@ -158,7 +158,7 @@ async function loadPopularTests() {
             
             <div>
                 <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-                    <span>Sample: ${test.sample}</span>
+                    <span>Category: ${test.category}</span>
                     <span>TAT: ${test.tat}</span>
                 </div>
 
