@@ -1,13 +1,11 @@
 /**
  * Aster Lab - Global Main Script
- * Handles: Preloader, Navigation, Mobile Menu, Testimonial Carousel, Toast Notifications
+ * Handles Navigation, Mobile Drawer with Backdrop, and Toast Notifications
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
-    initNavbar();
     initMobileMenu();
-    initTestimonialsCarousel();
     highlightActiveNavLink();
 });
 
@@ -19,62 +17,67 @@ function initPreloader() {
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.classList.add('loaded');
-        }, 500);
+        }, 300);
     });
 
-    // Fallback: Ensure page displays even if assets take longer
     setTimeout(() => {
         if (preloader && !preloader.classList.contains('loaded')) {
             preloader.classList.add('loaded');
         }
-    }, 1800);
+    }, 1200);
 }
 
-// 2. Sticky Navbar Blur & Scrolled State
-function initNavbar() {
-    const header = document.querySelector('.site-header');
-    if (!header) return;
-
-    const handleScroll = () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-}
-
-// 3. Mobile Navigation Drawer
+// 2. Mobile Navigation Drawer & Backdrop
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     if (!menuToggle || !navMenu) return;
 
+    // Create backdrop if not existing
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    function openMenu() {
+        navMenu.classList.add('open');
+        backdrop.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden'; // Lock background scroll on mobile
+    }
+
+    function closeMenu() {
+        navMenu.classList.remove('open');
+        backdrop.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
     menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        navMenu.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', navMenu.classList.contains('open'));
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            navMenu.classList.remove('open');
+        if (navMenu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
 
-    // Close when clicking a nav link
+    backdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
     navMenu.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('open');
-        });
+        link.addEventListener('click', closeMenu);
     });
 }
 
-// 4. Highlight Active Navigation Item
+// 3. Highlight Active Navigation Item
 function highlightActiveNavLink() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
@@ -87,105 +90,12 @@ function highlightActiveNavLink() {
     });
 }
 
-// 5. Testimonial Carousel (Item 34)
-function initTestimonialsCarousel() {
-    const track = document.querySelector('.testimonials-track');
-    if (!track) return;
-
-    const slides = track.querySelectorAll('.testimonial-slide');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    const dotsContainer = document.querySelector('.carousel-dots');
-    if (!slides.length) return;
-
-    let currentIndex = 0;
-    let autoPlayTimer = null;
-    let isPaused = false;
-
-    // Create dots
-    if (dotsContainer) {
-        dotsContainer.innerHTML = '';
-        slides.forEach((_, idx) => {
-            const dot = document.createElement('button');
-            dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
-            dot.setAttribute('aria-label', `Go to testimonial ${idx + 1}`);
-            dot.addEventListener('click', () => goToSlide(idx));
-            dotsContainer.appendChild(dot);
-        });
-    }
-
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        if (dotsContainer) {
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentIndex);
-            });
-        }
-    }
-
-    function goToSlide(index) {
-        currentIndex = (index + slides.length) % slides.length;
-        updateCarousel();
-    }
-
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-        goToSlide(currentIndex - 1);
-    }
-
-    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
-    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
-
-    // Autoplay with pause on hover / touch
-    function startAutoplay() {
-        stopAutoplay();
-        autoPlayTimer = setInterval(() => {
-            if (!isPaused) {
-                nextSlide();
-            }
-        }, 5500);
-    }
-
-    function stopAutoplay() {
-        if (autoPlayTimer) clearInterval(autoPlayTimer);
-    }
-
-    function resetAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
-
-    const carouselContainer = track.closest('.testimonials-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', () => { isPaused = true; });
-        carouselContainer.addEventListener('mouseleave', () => { isPaused = false; });
-        carouselContainer.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
-        carouselContainer.addEventListener('touchend', () => { isPaused = false; });
-    }
-
-    startAutoplay();
-}
-
-// 6. Global Toast Notification Utility
+// 4. Global Toast Notification Utility
 window.showToast = function(message, type = 'info') {
     let container = document.getElementById('toast-container');
     if (!container) {
         container = document.createElement('div');
         container.id = 'toast-container';
-        container.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 360px;
-        `;
         document.body.appendChild(container);
     }
 
@@ -201,16 +111,14 @@ window.showToast = function(message, type = 'info') {
         background: ${bgColors[type] || '#0A1128'};
         color: #FFFFFF;
         padding: 12px 18px;
-        border-radius: 12px;
+        border-radius: 8px;
         font-size: 0.9rem;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-family: var(--font-main);
+        font-weight: 500;
         opacity: 0;
         transform: translateY(-10px);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        font-family: var(--font-main);
+        transition: all 0.25s ease;
     `;
 
     toast.innerHTML = `<span>${message}</span>`;

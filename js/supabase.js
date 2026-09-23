@@ -443,6 +443,9 @@
                 status: "Pending"
             };
 
+            console.log("Home collection payload:", payload);
+            console.log("Supabase client:", client);
+
             if (client) {
                 try {
                     const { data, error } = await client
@@ -450,10 +453,16 @@
                         .insert([payload])
                         .select();
 
+                    console.log("Supabase response:", { data, error });
+
                     if (error) throw error;
                     return { data: data ? data[0] : payload, reference_number: refNumber, error: null };
                 } catch (err) {
-                    console.error("Error creating home collection request:", err);
+                    console.error("FULL Supabase error:", err);
+                    console.error("Error message:", err?.message);
+                    console.error("Error code:", err?.code);
+                    console.error("Error details:", err?.details);
+                    console.error("Error hint:", err?.hint);
                     return { data: null, reference_number: null, error: "Failed to schedule home collection. Please try again." };
                 }
             } else {

@@ -1,308 +1,93 @@
 /* ==========================================================================
-   ASTER LAB - FUTURISTIC ANIMATIONS & MICRO-INTERACTIONS
+   ASTER LAB - CLEAN HEALTHCARE ANIMATIONS & TRANSITIONS
    ========================================================================== */
 
-/* 1. Page Preloader Animation */
+/* 1. Page Preloader (Perfectly Centered Viewport Overlay) */
 #page-preloader {
-  position: fixed;
-  inset: 0;
-  background: #0A1128;
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: #FFFFFF !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 1.5rem !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 #page-preloader.loaded {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .preloader-brand {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.preloader-logo {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-family: var(--font-main);
+  font-size: 1.75rem;
   font-weight: 800;
-  letter-spacing: 0.15em;
-  color: #FFFFFF;
-  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.02em;
 }
 
-.preloader-sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.35em;
-  color: var(--accent-cyan);
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-/* Medical Pulse Line SVG Animation */
-.ecg-container {
-  width: 180px;
-  height: 48px;
-}
-
-.ecg-path {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: ecg-draw 1.8s ease-in-out infinite;
-  stroke: var(--accent-cyan);
-  filter: drop-shadow(0 0 6px rgba(0, 210, 211, 0.8));
-}
-
-@keyframes ecg-draw {
-  0% {
-    stroke-dashoffset: 400;
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.2;
-  }
-}
-
-/* 2. Custom Interactive Cursor (Desktop Only) */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--accent-cyan);
-  position: fixed;
-  top: 0;
-  left: 0;
+.preloader-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3.5px solid #E2E8F0;
+  border-top-color: var(--primary-blue);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
-  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: spinner-rotate 0.75s linear infinite;
+  flex-shrink: 0;
 }
 
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  border: 1.5px solid rgba(0, 210, 211, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.25s ease-out, height 0.25s ease-out, background-color 0.25s ease-out, border-color 0.25s ease-out;
+@keyframes spinner-rotate {
+  to { transform: rotate(360deg); }
 }
 
-.cursor-ring.cursor-hover {
-  width: 52px;
-  height: 52px;
-  border-color: var(--accent-cyan);
-  background-color: rgba(0, 210, 211, 0.1);
-}
-
-/* Hide on touch/mobile devices */
-@media (hover: none) and (pointer: coarse) {
-  .cursor-dot, .cursor-ring {
-    display: none !important;
-  }
-}
-
-/* 3. Shimmer Effect for Offers & Badges */
-.shimmer-badge {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer-badge::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.5) 50%,
-    transparent 70%
-  );
-  transform: rotate(30deg);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%) rotate(30deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(30deg);
-  }
-}
-
-/* 4. Pulse Dot Animation */
-@keyframes pulse-dot {
-  0% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(0, 210, 211, 0.7);
-  }
-  70% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 8px rgba(0, 210, 211, 0);
-  }
-  100% {
-    transform: scale(0.9);
-    box-shadow: 0 0 0 0 rgba(0, 210, 211, 0);
-  }
-}
-
-/* 5. Floating Diagnostic Cards & Particles */
-.floating-card-1 {
-  animation: float-slow 6s ease-in-out infinite alternate;
-}
-
-.floating-card-2 {
-  animation: float-mid 5s ease-in-out 1s infinite alternate;
-}
-
-.floating-card-3 {
-  animation: float-slow 7s ease-in-out 2s infinite alternate;
-}
-
-@keyframes float-slow {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-14px) rotate(1deg);
-  }
-}
-
-@keyframes float-mid {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-10px) rotate(-1.5deg);
-  }
-}
-
-/* 6. Scroll Reveal Classes (IntersectionObserver) */
+/* 2. Scroll Reveal Animations */
 .reveal-fade-up {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-fade-left {
-  opacity: 0;
-  transform: translateX(-36px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-fade-right {
-  opacity: 0;
-  transform: translateX(36px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.94);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .reveal-active {
   opacity: 1 !important;
-  transform: translate(0, 0) scale(1) !important;
+  transform: translateY(0) !important;
 }
 
 /* Stagger Delays */
 .delay-100 { transition-delay: 0.1s !important; }
 .delay-200 { transition-delay: 0.2s !important; }
 .delay-300 { transition-delay: 0.3s !important; }
-.delay-400 { transition-delay: 0.4s !important; }
-.delay-500 { transition-delay: 0.5s !important; }
 
-/* 7. Success Animated Checkmark */
+/* Animated Checkmark */
 .success-checkmark-box {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 1.5rem auto;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem auto;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(5, 150, 105, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  color: #059669;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-.checkmark-circle {
-  stroke-dasharray: 166;
-  stroke-dashoffset: 166;
-  stroke-width: 2.5;
-  stroke: #10B981;
-  fill: none;
-  animation: stroke-circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-}
-
-.checkmark-check {
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  stroke-width: 3;
-  stroke: #10B981;
-  fill: none;
-  animation: stroke-check 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
-}
-
-@keyframes stroke-circle {
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes stroke-check {
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* 8. Rotating Glowing Border on High-Priority Cards */
-.glow-border {
-  position: relative;
-}
-
-.glow-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0, 210, 211, 0.6), rgba(99, 102, 241, 0.3), rgba(0, 210, 211, 0.6));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.glow-border:hover::before {
-  opacity: 1;
-}
-
-/* 9. Accessibility: Reduced Motion Support */
+/* Accessibility: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -311,21 +96,8 @@
     scroll-behavior: auto !important;
   }
 
-  .reveal-fade-up,
-  .reveal-fade-left,
-  .reveal-fade-right,
-  .reveal-scale {
+  .reveal-fade-up {
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .floating-card-1,
-  .floating-card-2,
-  .floating-card-3 {
-    animation: none !important;
-  }
-
-  .shimmer-badge::after {
-    display: none !important;
   }
 }
