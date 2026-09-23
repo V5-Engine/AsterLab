@@ -359,8 +359,7 @@
                 try {
                     const { data, error } = await client
                         .from("appointments")
-                        .insert([payload])
-                        .select();
+                        .insert([payload]);
 
                     if (error) throw error;
                     return { data: data ? data[0] : payload, reference_number: refNumber, error: null };
@@ -443,17 +442,11 @@
                 status: "Pending"
             };
 
-            console.log("Home collection payload:", payload);
-            console.log("Supabase client:", client);
-
             if (client) {
                 try {
                     const { data, error } = await client
                         .from("home_collection_requests")
-                        .insert([payload])
-                        .select();
-
-                    console.log("Supabase response:", { data, error });
+                        .insert([payload]);
 
                     if (error) throw error;
                     return { data: data ? data[0] : payload, reference_number: refNumber, error: null };
