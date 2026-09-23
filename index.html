@@ -19,800 +19,761 @@
 </head>
 <body>
 
-  <!-- Minimal Preloader (Centrally Anchored Overlay) -->
-  <div id="page-preloader">
-    <div class="preloader-brand">ASTER LAB</div>
-    <div class="preloader-spinner"></div>
-  </div>
-
-  <!-- Main Navigation Header -->
-  <header class="site-header">
-    <div class="container">
-      <nav class="navbar" aria-label="Main Navigation">
-        
-        <!-- Brand Logo -->
-        <a href="./index.html" class="brand">
-            <img alt="navLogo" loading="lazy" width="147" height="40" decoding="async" data-nimg="1" sizes="100%"src="https://www.asterlabs.in/_next/image?url=https%3A%2F%2Fasterlab-website-images.s3.ap-south-1.amazonaws.com%2Fimages%2FAsterMainLogoHead.png&w=1920&q=60" style="color: transparent;">
-        </a>
-
-        <!-- Desktop Navigation Menu -->
-        <ul class="nav-menu">
-          <li><a href="./index.html" class="nav-link active">Home</a></li>
-          <li><a href="./tests.html" class="nav-link">Tests</a></li>
-          <li><a href="./offers.html" class="nav-link">Health Packages</a></li>
-          <li><a href="./home-collection.html" class="nav-link">Home Collection</a></li>
-          <li><a href="./about.html" class="nav-link">About Us</a></li>
-          <li><a href="./contact.html" class="nav-link">Contact</a></li>
-        </ul>
-
-        <!-- Right Side Nav Actions -->
-        <div class="nav-actions">
-          <a href="./appointment.html" class="btn btn-primary btn-sm">Book a Test</a>
-          <button class="menu-toggle" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </nav>
+    <!-- Minimal Preloader (Centrally Anchored Overlay) -->
+    <div id="page-preloader">
+        <div class="preloader-brand">ASTER LAB</div>
+        <div class="preloader-spinner"></div>
     </div>
-  </header>
 
-  <!-- Hero Section with Integrated Home Collection Card -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-grid">
-        
-        <!-- Left Hero Text & Highlights -->
-        <div class="reveal-fade-up">
-          <h1 class="hero-title">
-            Best Diagnostic Care for <span class="highlight">Full Body Checkups</span> & Pathology.
-          </h1>
-          <p class="hero-desc">
-            Free sample collection from your doorstep*. Get 100% certified reports for blood tests, sugar profiles, and comprehensive health packages.
-          </p>
+    <!-- Main Navigation Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar" aria-label="Main Navigation">
 
-          <ul class="hero-features-list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              100% Barcoded & Single-Use Vacuum Sample Tubes
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Same-Day Digital Lab Reports via Email & WhatsApp
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Trained, Certified Phlebotomists with Temperature Control Transit
-            </li>
-          </ul>
+                <!-- Brand Logo -->
+                <a href="./index.html" class="brand">
+                    <img alt="navLogo" loading="lazy" width="147" height="40" decoding="async" data-nimg="1" sizes="100%" src="https://www.asterlabs.in/_next/image?url=https%3A%2F%2Fasterlab-website-images.s3.ap-south-1.amazonaws.com%2Fimages%2FAsterMainLogoHead.png&w=1920&q=60" style="color: transparent;">
+                </a>
 
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="./appointment.html" class="btn btn-primary btn-lg">Book a Test</a>
-            <a href="./home-collection.html" class="btn btn-secondary btn-lg">Book Home Collection</a>
-          </div>
-        </div>
+                <!-- Desktop Navigation Menu -->
+                <ul class="nav-menu">
+                    <li><a href="./index.html" class="nav-link active">Home</a></li>
+                    <li><a href="./tests.html" class="nav-link">Tests</a></li>
+                    <li><a href="./offers.html" class="nav-link">Health Packages</a></li>
+                    <li><a href="./home-collection.html" class="nav-link">Home Collection</a></li>
+                    <li><a href="./about.html" class="nav-link">About Us</a></li>
+                    <li><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
 
-        <!-- Right Hero: Clean Home Collection Booking Form Card -->
-        <div class="reveal-fade-up delay-100">
-          <div class="hero-form-card">
-            <h2 class="hero-form-title">Book a Home Collection</h2>
-            <p class="hero-form-subtitle">Fill in your details for doorstep sample collection</p>
-
-            <form id="hero-home-collection-form" onsubmit="handleHeroFormSubmit(event)">
-              <div class="form-group">
-                <label for="hero-name" class="form-label">Full Name <span class="req">*</span></label>
-                <input type="text" id="hero-name" class="form-control" placeholder="Enter full name" required>
-              </div>
-
-              <div class="form-group">
-                <label for="hero-mobile" class="form-label">Mobile Number <span class="req">*</span></label>
-                <div style="display: flex; gap: 0.5rem; width: 100%;">
-                  <span style="padding: 0.75rem 0.85rem; background: #F1F5F9; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; color: var(--text-secondary); flex-shrink: 0;">+91</span>
-                  <input type="tel" id="hero-mobile" class="form-control" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+                <!-- Right Side Nav Actions -->
+                <div class="nav-actions">
+                    <a href="./appointment.html" class="btn btn-primary btn-sm">Book a Test</a>
+                    <button class="menu-toggle" aria-label="Toggle navigation menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-              </div>
-
-              <div class="form-group">
-                <label for="hero-email" class="form-label">Email Address</label>
-                <input type="email" id="hero-email" class="form-control" placeholder="Enter email address">
-              </div>
-
-              <div class="form-group">
-                <label for="hero-city" class="form-label">City / Location <span class="req">*</span></label>
-                <input type="text" id="hero-city" class="form-control" placeholder="Enter your city or area" required value="Mankara">
-              </div>
-
-              <button type="submit" id="hero-form-btn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
-                Request a Call Back
-              </button>
-            </form>
-          </div>
+            </nav>
         </div>
+    </header>
 
-      </div>
-    </div>
-  </section>
+    <!-- Hero Section with Integrated Home Collection Card -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
 
-  <!-- Health Packages Section (Matching Reference Filter Layout) -->
-  <section class="section" style="background-color: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">PREVENTIVE HEALTH</span>
-        <h2 class="section-title">Health Packages</h2>
-        <p class="section-subtitle">Comprehensive preventive screening panels curated for every age and condition.</p>
-      </div>
+                <!-- Left Hero Text & Highlights -->
+                <div class="reveal-fade-up">
+                    <h1 class="hero-title">
+                        Best Diagnostic Care for <span class="highlight">Full Body Checkups</span> & Pathology.
+                    </h1>
+                    <p class="hero-desc">
+                        Free sample collection from your doorstep*. Get 100% certified reports for blood tests, sugar profiles, and comprehensive health packages.
+                    </p>
 
-      <div style="display: grid; grid-template-columns: 260px 1fr; gap: 2rem;" class="packages-main-grid">
-        
-        <!-- Filter Sidebar -->
-        <aside style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem; height: fit-content;" class="filter-sidebar">
-          <h3 style="font-size: 1.1rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-subtle);">
-            Filters
-          </h3>
+                    <ul class="hero-features-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            100% Barcoded & Single-Use Vacuum Sample Tubes
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Same-Day Digital Lab Reports via Email & WhatsApp (T&C Apply)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Trained, Certified Phlebotomists with Temperature Control Transit
+                        </li>
+                    </ul>
 
-          <!-- Package Type -->
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Package Type</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" checked onchange="filterPackages()"> Full Body Package
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Senior Care Package
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Executive Wellness
-              </label>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="./appointment.html" class="btn btn-primary btn-lg">Book a Test</a>
+                        <a href="./home-collection.html" class="btn btn-secondary btn-lg">Book Home Collection</a>
+                    </div>
+                </div>
+
+                <!-- Right Hero: Clean Home Collection Booking Form Card -->
+                <div class="reveal-fade-up delay-100">
+                    <div class="hero-form-card">
+                        <h2 class="hero-form-title">Book a Home Collection</h2>
+                        <p class="hero-form-subtitle">Fill in your details for doorstep sample collection</p>
+
+                        <form id="hero-home-collection-form" onsubmit="handleHeroFormSubmit(event)">
+                            <div class="form-group">
+                                <label for="hero-name" class="form-label">Full Name <span class="req">*</span></label>
+                                <input type="text" id="hero-name" class="form-control" placeholder="Enter full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hero-mobile" class="form-label">Mobile Number <span class="req">*</span></label>
+                                <div style="display: flex; gap: 0.5rem; width: 100%;">
+                                    <span style="padding: 0.75rem 0.85rem; background: #F1F5F9; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; color: var(--text-secondary); flex-shrink: 0;">+91</span>
+                                    <input type="tel" id="hero-mobile" class="form-control" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hero-email" class="form-label">Email Address</label>
+                                <input type="email" id="hero-email" class="form-control" placeholder="Enter email address">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hero-city" class="form-label">City / Location <span class="req">*</span></label>
+                                <input type="text" id="hero-city" class="form-control" placeholder="Enter your city or area" required value="Mankara">
+                            </div>
+
+                            <button type="submit" id="hero-form-btn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+                                Request a Call Back
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
-          </div>
-
-          <!-- Health Condition -->
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Health Condition</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Diabetes
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Heart Disease
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Thyroid Profile
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Vitamin Deficiency
-              </label>
-            </div>
-          </div>
-
-          <!-- Gender -->
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Gender</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="radio" name="genderFilter" checked onchange="filterPackages()"> All
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="radio" name="genderFilter" onchange="filterPackages()"> Male
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="radio" name="genderFilter" onchange="filterPackages()"> Female
-              </label>
-            </div>
-          </div>
-
-          <!-- Age -->
-          <div>
-            <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Age Group</h4>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> 20 - 30 Years
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> 30 - 40 Years
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> 40 - 50 Years
-              </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" onchange="filterPackages()"> Above 50 Years
-              </label>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Dynamic Offers Grid -->
-        <div id="offers-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-          <!-- Loaded via js/offers.js -->
         </div>
+    </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Popular Tests Section -->
-  <section class="section" style="background: #FFFFFF;">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">INDIVIDUAL DIAGNOSTICS</span>
-        <h2 class="section-title">Popular Diagnostic Tests</h2>
-        <p class="section-subtitle">Routine and specialized pathology tests available with fast turnaround time.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
-        
-        <div class="clean-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-              <span>Sample: Blood Vacuum</span>
-              <span>TAT: 4-6 Hrs</span>
-            </div>
-            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Complete Blood Count (CBC) with ESR</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Measures RBC, WBC, Platelets, Hemoglobin, Hematocrit, and Erythrocyte Sedimentation Rate.
-            </p>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
-            <span style="font-family: var(--font-main); font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">₹350</span>
-            <a href="appointment.html?package=CBC" class="btn btn-primary btn-sm">Book Test</a>
-          </div>
-        </div>
-
-        <div class="clean-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-              <span>Sample: Blood EDTA</span>
-              <span>TAT: 4 Hrs</span>
-            </div>
-            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">HbA1c (Glycosylated Hemoglobin)</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Gold standard HPLC method to measure 3-month average blood glucose control.
-            </p>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
-            <span style="font-family: var(--font-main); font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">₹490</span>
-            <a href="appointment.html?package=HbA1c" class="btn btn-primary btn-sm">Book Test</a>
-          </div>
-        </div>
-
-        <div class="clean-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-              <span>Sample: Fasting Serum</span>
-              <span>TAT: 6 Hrs</span>
-            </div>
-            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Lipid Profile Comprehensive</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Total Cholesterol, HDL, LDL, VLDL, Triglycerides, and Cardiac Risk Ratios.
-            </p>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
-            <span style="font-family: var(--font-main); font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">₹650</span>
-            <a href="appointment.html?package=LipidProfile" class="btn btn-primary btn-sm">Book Test</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="text-align: center; margin-top: 2.5rem;">
-        <a href="./tests.html" class="btn btn-secondary">View All Diagnostic Tests &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Home Sample Collection Section -->
-  <section class="section" style="background-color: var(--bg-tertiary);">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;" class="home-collection-section-grid">
-        
-        <div>
-          <span class="section-tag">CONVENIENT DOORSTEP CARE</span>
-          <h2 style="font-size: 2.25rem; margin-bottom: 1rem; color: var(--text-primary);">
-            Home Sample Collection at Your Comfort
-          </h2>
-          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.75rem;">
-            No need to travel or wait in line. Our trained phlebotomists collect your sample right from your doorstep in sealed, barcoded containers.
-          </p>
-
-          <div class="home-collection-features-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-            <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Safe & Hygienic</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted);">Sterile single-use vacutainers</p>
+    <!-- Health Packages Section (Matching Reference Filter Layout) -->
+    <section class="section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">PREVENTIVE HEALTH</span>
+                <h2 class="section-title">Health Packages</h2>
+                <p class="section-subtitle">Comprehensive preventive screening panels curated for every age and condition.</p>
             </div>
 
-            <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Cold-Chain Transit</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted);">Temperature-controlled boxes</p>
+            <div style="display: grid; grid-template-columns: 260px 1fr; gap: 2rem;" class="packages-main-grid">
+
+                <!-- Filter Sidebar -->
+                <aside style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 1.5rem; height: fit-content;" class="filter-sidebar">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-subtle);">
+                        Filters
+                    </h3>
+
+                    <!-- Package Type -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Package Type</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" checked onchange="filterPackages()"> Full Body Package
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Senior Care Package
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Executive Wellness
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Health Condition -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Health Condition</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Diabetes
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Heart Disease
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Thyroid Profile
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Vitamin Deficiency
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Gender</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="genderFilter" checked onchange="filterPackages()"> All
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="genderFilter" onchange="filterPackages()"> Male
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="genderFilter" onchange="filterPackages()"> Female
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Age -->
+                    <div>
+                        <h4 style="font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.75rem;">Age Group</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> 20 - 30 Years
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> 30 - 40 Years
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> 40 - 50 Years
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" onchange="filterPackages()"> Above 50 Years
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Dynamic Offers Grid -->
+                <div id="offers-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <!-- Loaded via js/offers.js -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Tests Section -->
+    <section class="section" style="background: #FFFFFF;">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">INDIVIDUAL DIAGNOSTICS</span>
+                <h2 class="section-title">Popular Diagnostic Tests</h2>
+                <p class="section-subtitle">Routine and specialized pathology tests available with fast turnaround time.</p>
             </div>
 
-            <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Flexible Slots</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted);">6:30 AM to 8:00 PM</p>
+            <div id="popular-test" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+                <!--<div class="clean-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                            <span>Sample: Blood Vacuum</span>
+                            <span>TAT: 4-6 Hrs</span>
+                        </div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Complete Blood Count (CBC) with ESR</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                            Measures RBC, WBC, Platelets, Hemoglobin, Hematocrit, and Erythrocyte Sedimentation Rate.
+                        </p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+                        <span style="font-family: var(--font-main); font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">₹350</span>
+                        <a href="appointment.html?package=CBC" class="btn btn-primary btn-sm">Book Test</a>
+                    </div>
+                </div>-->
+
             </div>
 
-            <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Certified Staff</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted);">Experienced phlebotomists</p>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="./tests.html" class="btn btn-secondary">View All Diagnostic Tests &rarr;</a>
             </div>
-          </div>
-
-          <a href="./home-collection.html" class="btn btn-primary btn-lg">Schedule Home Collection</a>
         </div>
+    </section>
 
-        <!-- Direct Home Collection Request Card (Hidden on Mobile per user request) -->
-        <div class="clean-card direct-home-collection-card" style="padding: 2rem; background: #FFFFFF;">
-          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Direct Home Collection Request</h3>
-          
-          <form id="direct-home-collection-form" onsubmit="handleDirectCollectionSubmit(event)">
-            <div class="form-group">
-              <label class="form-label">Patient Name <span class="req">*</span></label>
-              <input type="text" id="direct-name" class="form-control" placeholder="Full name" required>
+    <!-- Home Sample Collection Section -->
+    <section class="section" style="background-color: var(--bg-tertiary);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;" class="home-collection-section-grid">
+
+                <div>
+                    <span class="section-tag">CONVENIENT DOORSTEP CARE</span>
+                    <h2 style="font-size: 2.25rem; margin-bottom: 1rem; color: var(--text-primary);">
+                        Home Sample Collection at Your Comfort
+                    </h2>
+                    <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.75rem;">
+                        No need to travel or wait in line. Our trained phlebotomists collect your sample right from your doorstep in sealed, barcoded containers.
+                    </p>
+
+                    <div class="home-collection-features-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Safe & Hygienic</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Sterile single-use vacutainers</p>
+                        </div>
+
+                        <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Cold-Chain Transit</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Temperature-controlled boxes</p>
+                        </div>
+
+                        <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Flexible Slots</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">7:00 AM to 6:00 PM</p>
+                        </div>
+
+                        <div style="background: #FFFFFF; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">✔ Certified Staff</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Experienced phlebotomists</p>
+                        </div>
+                    </div>
+
+                    <a href="./home-collection.html" class="btn btn-primary btn-lg">Schedule Home Collection</a>
+                </div>
+
+                <!-- Direct Home Collection Request Card (Hidden on Mobile per user request) -->
+                <div class="clean-card direct-home-collection-card" style="padding: 2rem; background: #FFFFFF;">
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">Direct Home Collection Request</h3>
+
+                    <form id="direct-home-collection-form" onsubmit="handleDirectCollectionSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label">Patient Name <span class="req">*</span></label>
+                            <input type="text" id="direct-name" class="form-control" placeholder="Full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number <span class="req">*</span></label>
+                            <input type="tel" id="direct-mobile" class="form-control" placeholder="10-digit mobile" required pattern="[0-9]{10}">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Doorstep Address <span class="req">*</span></label>
+                            <input type="text" id="direct-address" class="form-control" placeholder="Flat, Street, Area" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Required Test / Package <span class="req">*</span></label>
+                            <select id="direct-test" class="form-control" required>
+                                <option value="">Select Package or Test</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-teal" style="width: 100%;">Book Home Collection</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Aster Lab Section (Trust Cards) -->
+    <section class="section" style="background: #FFFFFF;">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">WHY CHOOSE US</span>
+                <h2 class="section-title">Trust Built on Clinical Rigor</h2>
+                <p class="section-subtitle">Quality diagnostics adhering to strict quality controls and pathology standards.</p>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Mobile Number <span class="req">*</span></label>
-              <input type="tel" id="direct-mobile" class="form-control" placeholder="10-digit mobile" required pattern="[0-9]{10}">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Accurate Results</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Multi-level quality checks and instrument calibration ensuring dependable medical results.
+                    </p>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Advanced Technology</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Automated analyzers and chemiluminescence technology for high-precision diagnostic throughput.
+                    </p>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Experienced Professionals</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Supervised by qualified pathologists, biochemists, and certified medical laboratory technicians.
+                    </p>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Home Sample Collection</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Safe doorstep phlebotomy service using temperature-regulated cold chain transport gear.
+                    </p>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Fast Digital Reports</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Verified digital reports delivered directly to your mobile via SMS, Email, and WhatsApp.
+                    </p>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Trusted Diagnostics</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary);">
+                        Transparent pricing, zero hidden charges, and patient-first healthcare service.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section" style="background-color: #0A1128; color: #FFFFFF;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+                <div>
+                    <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">50+</div>
+                    <div style="font-size: 0.95rem; color: #CBD5E1;">Diagnostic Tests Available</div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">100%</div>
+                    <div style="font-size: 0.95rem; color: #CBD5E1;">Barcoded Specimen Tracking</div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">Same-Day</div>
+                    <div style="font-size: 0.95rem; color: #CBD5E1;">Digital Report Delivery</div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">Doorstep</div>
+                    <div style="font-size: 0.95rem; color: #CBD5E1;">Sample Collection Service</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">CLINICAL SERVICES</span>
+                <h2 class="section-title">Comprehensive Diagnostic Services</h2>
+                <p class="section-subtitle">Broad pathology spectrum for routine wellness and specialized medical care.</p>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Doorstep Address <span class="req">*</span></label>
-              <input type="text" id="direct-address" class="form-control" placeholder="Flat, Street, Area" required>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Blood Tests</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">CBC, Hemoglobin, ESR, blood grouping, and morphology screening.</p>
+                </div>
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Health Checkups</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Full body screening packages for men, women, and senior citizens.</p>
+                </div>
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Specialized Diagnostics</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Thyroid, Diabetes profiles, Cardiac markers, and Vitamin levels.</p>
+                </div>
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Home Sample Collection</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Safe doorstep pickup by trained healthcare professionals.</p>
+                </div>
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Preventive Packages</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Curated early-detection biomarker screening panels.</p>
+                </div>
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Corporate Checkups</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Custom wellness programs for organizations and employee health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" style="background: #FFFFFF;">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">PATIENT FEEDBACK</span>
+                <h2 class="section-title">What Our Patients Say</h2>
+                <p class="section-subtitle">Feedback from patients who experienced our laboratory and home collection services.</p>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Required Test / Package <span class="req">*</span></label>
-              <select id="direct-test" class="form-control" required>
-                <option value="">Select Package or Test</option>
-                <option value="Full Body Health Check">Full Body Health Check</option>
-                <option value="Diabetes Care Profile">Diabetes Care Profile</option>
-                <option value="Thyroid Profile">Thyroid Profile</option>
-                <option value="Routine Blood Test">Routine Blood Test</option>
-              </select>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
+                        "Professional and fast service..i visited this lab recently for doing a routine blood test. The staff was incredibly professional and made the blood draw process painless."
+                    </p>
+                    <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Navaneetha K S.</div>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
+                        "I recently went for my mother’s monthly check-up.Aster Lab turned out to be a great choice because of the friendly atmosphere and the good service they provide. Aster Lab packages are more affordable."
+                    </p>
+                    <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
+                        Vishnu Subhash
+                    </div>
+                </div>
+
+                <div class="clean-card" style="padding: 1.75rem;">
+                    <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
+                        "Aster Lab is good. Staff is kind and helpful. Test sample take fast and clean. Lab is neat and clean. Report came on time. Easy to understand. I am happy with the service. Good lab for test."
+                    </p>
+                    <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
+                        Fathima Beevi S
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header reveal-fade-up">
+                <span class="section-tag">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 class="section-title">Common Questions</h2>
+                <p class="section-subtitle">Everything you need to know about booking tests and receiving reports.</p>
             </div>
 
-            <button type="submit" class="btn btn-teal" style="width: 100%;">Book Home Collection</button>
-          </form>
-        </div>
+            <div class="faq-accordion">
 
-      </div>
-    </div>
-  </section>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I book a diagnostic test or package?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        You can book online directly through our website by clicking "Book a Test", or request a doorstep home sample collection using the form on this page.
+                    </div>
+                </div>
 
-  <!-- Why Choose Aster Lab Section (Trust Cards) -->
-  <section class="section" style="background: #FFFFFF;">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">WHY CHOOSE US</span>
-        <h2 class="section-title">Trust Built on Clinical Rigor</h2>
-        <p class="section-subtitle">Quality diagnostics adhering to strict quality controls and pathology standards.</p>
-      </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide home sample collection?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! Our certified phlebotomists provide safe, doorstep sample collection at your preferred time slot using sealed single-use tubes and cold-chain transit boxes.
+                    </div>
+                </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
-        
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Accurate Results</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Multi-level quality checks and instrument calibration ensuring dependable medical results.
-          </p>
-        </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How will I receive my diagnostic report?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        As soon as your test is verified by our pathologists, your certified PDF report is sent directly via SMS, WhatsApp link, and Email.
+                    </div>
+                </div>
 
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Advanced Technology</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Automated analyzers and chemiluminescence technology for high-precision diagnostic throughput.
-          </p>
-        </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What preparation is needed for fasting blood tests?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        For tests requiring fasting (such as Fasting Blood Sugar or Lipid Profile), maintain 10-12 hours of overnight fasting. You may drink plain water.
+                    </div>
+                </div>
 
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Experienced Professionals</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Supervised by qualified pathologists, biochemists, and certified medical laboratory technicians.
-          </p>
-        </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I visit the laboratory directly?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Yes, walk-ins are welcome at our diagnostic facility. Booking an appointment online helps ensure priority lounge check-in.
+                    </div>
+                </div>
 
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Home Sample Collection</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Safe doorstep phlebotomy service using temperature-regulated cold chain transport gear.
-          </p>
-        </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I contact Aster Lab customer care?</span>
+                        <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        You can call our helpline at +91 85 8902 2033, message us on WhatsApp at +91 8589022033.
+                    </div>
+                </div>
 
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Fast Digital Reports</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Verified digital reports delivered directly to your mobile via SMS, Email, and WhatsApp.
-          </p>
+            </div>
         </div>
+    </section>
 
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 0.5rem;">Trusted Diagnostics</h3>
-          <p style="font-size: 0.92rem; color: var(--text-secondary);">
-            Transparent pricing, zero hidden charges, and patient-first healthcare service.
-          </p>
-        </div>
+    <!-- Location Section -->
+    <section class="section" style="background: #FFFFFF;">
+        <div class="container">
+            <div class="clean-card" style="padding: 2.5rem;">
+                <div class="location-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div>
+                        <span class="section-tag">FACILITY</span>
+                        <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: var(--text-primary);">
+                            Aster Lab Mankara
+                        </h2>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+                            OAS TOWER, 7/521 F, opposite VISAKH FUELS, Mankara, Keralam 678613
+                        </p>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                            <strong>Hours:</strong> 6:30 AM - 6:30 PM (Mon - Sun) &bull; Lab Processing 24/7
+                        </div>
+                        <a href="./contact.html" class="btn btn-outline">View Location & Contact Details</a>
+                    </div>
 
-      </div>
-    </div>
-  </section>
+                    <div style="background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Need Assistance Booking?</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                            Our reception desk is ready to guide you on test selection and fasting guidelines.
+                        </p>
+                        <a href="tel:+918589022033" class="btn btn-primary">Call +91 85 8902 2033</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Statistics Section -->
-  <section class="section" style="background-color: #0A1128; color: #FFFFFF;">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
-        <div>
-          <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">50+</div>
-          <div style="font-size: 0.95rem; color: #CBD5E1;">Diagnostic Tests Available</div>
-        </div>
-        <div>
-          <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">100%</div>
-          <div style="font-size: 0.95rem; color: #CBD5E1;">Barcoded Specimen Tracking</div>
-        </div>
-        <div>
-          <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">Same-Day</div>
-          <div style="font-size: 0.95rem; color: #CBD5E1;">Digital Report Delivery</div>
-        </div>
-        <div>
-          <div style="font-family: var(--font-main); font-size: 2.5rem; font-weight: 800; color: #38BDF8; margin-bottom: 0.25rem;">Doorstep</div>
-          <div style="font-size: 0.95rem; color: #CBD5E1;">Sample Collection Service</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">CLINICAL SERVICES</span>
-        <h2 class="section-title">Comprehensive Diagnostic Services</h2>
-        <p class="section-subtitle">Broad pathology spectrum for routine wellness and specialized medical care.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Blood Tests</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">CBC, Hemoglobin, ESR, blood grouping, and morphology screening.</p>
-        </div>
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Health Checkups</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">Full body screening packages for men, women, and senior citizens.</p>
-        </div>
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Specialized Diagnostics</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">Thyroid, Diabetes profiles, Cardiac markers, and Vitamin levels.</p>
-        </div>
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Home Sample Collection</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">Safe doorstep pickup by trained healthcare professionals.</p>
-        </div>
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Preventive Packages</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">Curated early-detection biomarker screening panels.</p>
-        </div>
-        <div class="clean-card" style="padding: 1.75rem;">
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Corporate Checkups</h3>
-          <p style="font-size: 0.9rem; color: var(--text-secondary);">Custom wellness programs for organizations and employee health.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="section" style="background: #FFFFFF;">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">PATIENT FEEDBACK</span>
-        <h2 class="section-title">What Our Patients Say</h2>
-        <p class="section-subtitle">Feedback from patients who experienced our laboratory and home collection services.</p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
-        <div class="clean-card" style="padding: 1.75rem;">
-          <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
-              "Professional and fast service..i visited this lab recently for doing a routine blood test. The staff was incredibly professional and made the blood draw process painless."
-          </p>
-          <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Navaneetha K S.</div>
-        </div>
-
-        <div class="clean-card" style="padding: 1.75rem;">
-          <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
-              "I recently went for my mother’s monthly check-up.Aster Lab turned out to be a great choice because of the friendly atmosphere and the good service they provide. Aster Lab packages are more affordable."
-          </p>
-          <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
-              Vishnu Subhash
-          </div>
-        </div>
-
-        <div class="clean-card" style="padding: 1.75rem;">
-          <div style="color: #F59E0B; margin-bottom: 0.5rem;">★★★★★</div>
-          <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6;">
-              "Aster Lab is good. Staff is kind and helpful. Test sample take fast and clean. Lab is neat and clean. Report came on time. Easy to understand. I am happy with the service. Good lab for test."
-          </p>
-          <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">
-              Fathima Beevi S
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Accordion Section -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-header reveal-fade-up">
-        <span class="section-tag">FREQUENTLY ASKED QUESTIONS</span>
-        <h2 class="section-title">Common Questions</h2>
-        <p class="section-subtitle">Everything you need to know about booking tests and receiving reports.</p>
-      </div>
-
-      <div class="faq-accordion">
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>How can I book a diagnostic test or package?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-            You can book online directly through our website by clicking "Book a Test", or request a doorstep home sample collection using the form on this page.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Do you provide home sample collection?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-            Yes! Our certified phlebotomists provide safe, doorstep sample collection at your preferred time slot using sealed single-use tubes and cold-chain transit boxes.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>How will I receive my diagnostic report?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-            As soon as your test is verified by our pathologists, your certified PDF report is sent directly via SMS, WhatsApp link, and Email.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>What preparation is needed for fasting blood tests?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-            For tests requiring fasting (such as Fasting Blood Sugar or Lipid Profile), maintain 10-12 hours of overnight fasting. You may drink plain water.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Can I visit the laboratory directly?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-            Yes, walk-ins are welcome at our diagnostic facility. Booking an appointment online helps ensure priority lounge check-in.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>How can I contact Aster Lab customer care?</span>
-            <svg viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-          <div class="faq-answer">
-              You can call our helpline at +91 85 8902 2033, message us on WhatsApp at +91 8589022033.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Location Section -->
-  <section class="section" style="background: #FFFFFF;">
-    <div class="container">
-      <div class="clean-card" style="padding: 2.5rem;">
-        <div class="location-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
-          <div>
-            <span class="section-tag">CENTRAL FACILITY</span>
-            <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: var(--text-primary);">
-              Aster Lab Mankara
+    <!-- Final CTA Section -->
+    <section class="section" style="background-color: var(--primary-blue); color: #FFFFFF; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.35rem; color: #FFFFFF; margin-bottom: 0.75rem;">
+                Take Control of Your Health Today
             </h2>
-            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
-                OAS TOWER, 7/521 F, opposite VISAKH FUELS, Mankara, Keralam 678613
+            <p style="font-size: 1.05rem; color: #E0F2FE; max-width: 540px; margin: 0 auto 2rem auto;">
+                Book your diagnostic test or schedule doorstep sample collection in under 60 seconds.
             </p>
-            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-              <strong>Hours:</strong> 6:30 AM - 8:30 PM (Mon - Sun) &bull; Lab Processing 24/7
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="./appointment.html" class="btn btn-secondary btn-lg">Book a Test</a>
+                <a href="./home-collection.html" class="btn btn-teal btn-lg">Book Home Collection</a>
             </div>
-            <a href="./contact.html" class="btn btn-outline">View Location & Contact Details</a>
-          </div>
-
-          <div style="background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
-            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Need Assistance Booking?</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-              Our reception desk is ready to guide you on test selection and fasting guidelines.
-            </p>
-            <a href="tel:+918589022033" class="btn btn-primary">Call +91 85 8902 2033</a>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Final CTA Section -->
-  <section class="section" style="background-color: var(--primary-blue); color: #FFFFFF; text-align: center;">
-    <div class="container">
-      <h2 style="font-size: 2.35rem; color: #FFFFFF; margin-bottom: 0.75rem;">
-        Take Control of Your Health Today
-      </h2>
-      <p style="font-size: 1.05rem; color: #E0F2FE; max-width: 540px; margin: 0 auto 2rem auto;">
-        Book your diagnostic test or schedule doorstep sample collection in under 60 seconds.
-      </p>
-      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <a href="./appointment.html" class="btn btn-secondary btn-lg">Book a Test</a>
-        <a href="./home-collection.html" class="btn btn-teal btn-lg">Book Home Collection</a>
-      </div>
-    </div>
-  </section>
+    <!-- Professional Healthcare Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
 
-  <!-- Professional Healthcare Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        
-        <div>
-          <div class="footer-brand-title">ASTER LAB</div>
-          <p class="footer-desc">
-            Precision diagnostic laboratory delivering certified pathology results and doorstep sample collection.
-          </p>
+                <div>
+                    <div class="footer-brand-title">ASTER LAB</div>
+                    <p class="footer-desc">
+                        Precision diagnostic laboratory delivering certified pathology results and doorstep sample collection.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./tests.html">Tests</a></li>
+                        <li><a href="./offers.html">Health Packages</a></li>
+                        <li><a href="./home-collection.html">Home Collection</a></li>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="./appointment.html">Book a Test</a></li>
+                        <li><a href="./home-collection.html">Doorstep Collection</a></li>
+                        <li><a href="./offers.html">Preventive Health Checkups</a></li>
+                        <li><a href="./admin/index.html">Staff Portal</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">Contact Us</h4>
+                    <p style="color: #94A3B8; margin-bottom: 0.5rem;">Helpline: +91 85 8902 2033</p>
+                    <p style="color: #94A3B8; margin-bottom: 0.5rem;">WhatsApp: +91 8589022033</p>
+                    <p style="color: #94A3B8; margin-bottom: 0.5rem;">Email: astermankara@gmail.com</p>
+                    <p style="color: #94A3B8; font-size: 0.85rem;">OAS TOWER, 7/521 F, opposite VISAKH FUELS, Mankara, Keralam 678613</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 Aster Lab Mankara. All Rights Reserved. Precision. Technology. Care.</div>
+            </div>
         </div>
+    </footer>
 
-        <div>
-          <h4 class="footer-col-title">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./tests.html">Tests</a></li>
-            <li><a href="./offers.html">Health Packages</a></li>
-            <li><a href="./home-collection.html">Home Collection</a></li>
-            <li><a href="./about.html">About Us</a></li>
-            <li><a href="./contact.html">Contact Us</a></li>
-          </ul>
+    <!-- Mobile Action Dock -->
+    <aside class="mobile-action-dock" aria-label="Mobile Actions">
+        <div class="dock-items">
+            <a href="tel:+918589022033" class="dock-btn">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Call</span>
+            </a>
+            <a href="./contact.html" class="dock-btn">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Location</span>
+            </a>
+            <a href="./appointment.html" class="dock-btn dock-btn-primary">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Book</span>
+            </a>
         </div>
+    </aside>
 
-        <div>
-          <h4 class="footer-col-title">Services</h4>
-          <ul class="footer-links">
-            <li><a href="./appointment.html">Book a Test</a></li>
-            <li><a href="./home-collection.html">Doorstep Collection</a></li>
-            <li><a href="./offers.html">Preventive Health Checkups</a></li>
-            <li><a href="./admin/index.html">Staff Portal</a></li>
-          </ul>
-        </div>
+    <!-- Inline Script for Form Handlers -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supabase.js"></script>
+    <script>
+        async function handleHeroFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('hero-name').value.trim();
+            const mobile = document.getElementById('hero-mobile').value.trim();
+            const email = document.getElementById('hero-email').value.trim();
+            const city = document.getElementById('hero-city').value.trim();
+            const btn = document.getElementById('hero-form-btn');
 
-        <div>
-          <h4 class="footer-col-title">Contact Us</h4>
-          <p style="color: #94A3B8; margin-bottom: 0.5rem;">Helpline: +91 85 8902 2033</p>
-          <p style="color: #94A3B8; margin-bottom: 0.5rem;">WhatsApp: +91 8589022033</p>
-          <p style="color: #94A3B8; margin-bottom: 0.5rem;">Email: astermankara@gmail.com</p>
-          <p style="color: #94A3B8; font-size: 0.85rem;">OAS TOWER, 7/521 F, opposite VISAKH FUELS, Mankara, Keralam 678613</p>
-        </div>
+            if (!name || !mobile) {
+                window.showToast('Please enter your name and mobile number.', 'warning');
+                return;
+            }
 
-      </div>
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
 
-      <div class="footer-bottom">
-          <div>&copy; 2026 Aster Lab Mankara. All Rights Reserved. Precision. Technology. Care.</div>
-      </div>
-    </div>
-  </footer>
+            const res = await window.AsterLabDB.createHomeCollectionRequest({
+                name,
+                mobile: '+91 ' + mobile,
+                email,
+                address: city,
+                city,
+                pincode: '678613',
+                preferred_date: new Date().toISOString().split('T')[0],
+                preferred_time: 'Morning Slot',
+                test_package: 'Home Collection Inquiry'
+            });
 
-  <!-- Mobile Action Dock -->
-  <aside class="mobile-action-dock" aria-label="Mobile Actions">
-    <div class="dock-items">
-      <a href="tel:+918589022033" class="dock-btn">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span>Call</span>
-      </a>
-      <a href="./contact.html" class="dock-btn">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <span>Location</span>
-      </a>
-      <a href="./appointment.html" class="dock-btn dock-btn-primary">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        <span>Book</span>
-      </a>
-    </div>
-  </aside>
+            if (res.error) {
+                window.showToast(res.error, 'error');
+            } else {
+                window.showToast(`Request received! Reference ID: ${res.reference_number}. Our coordinator will call you shortly.`, 'success');
+                e.target.reset();
+            }
+            btn.disabled = false;
+            btn.textContent = 'Request a Call Back';
+        }
 
-  <!-- Inline Script for Form Handlers -->
-  <script>
-    async function handleHeroFormSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('hero-name').value.trim();
-      const mobile = document.getElementById('hero-mobile').value.trim();
-      const email = document.getElementById('hero-email').value.trim();
-      const city = document.getElementById('hero-city').value.trim();
-      const btn = document.getElementById('hero-form-btn');
+        async function handleDirectCollectionSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('direct-name').value.trim();
+            const mobile = document.getElementById('direct-mobile').value.trim();
+            const address = document.getElementById('direct-address').value.trim();
+            const test = document.getElementById('direct-test').value;
 
-      if (!name || !mobile) {
-        window.showToast('Please enter your name and mobile number.', 'warning');
-        return;
-      }
+            if (!name || !mobile || !address || !test) {
+                window.showToast('Please complete all required fields.', 'warning');
+                return;
+            }
 
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
+            const res = await window.AsterLabDB.createHomeCollectionRequest({
+                name,
+                mobile: '+91 ' + mobile,
+                address,
+                city: 'Mankara',
+                pincode: '678613',
+                preferred_date: new Date().toISOString().split('T')[0],
+                preferred_time: '07:00 AM - 10:00 AM',
+                test_package: test
+            });
 
-      const res = await window.AsterLabDB.createHomeCollectionRequest({
-        name,
-        mobile: '+91 ' + mobile,
-        email,
-        address: city,
-        city,
-        pincode: '678613',
-        preferred_date: new Date().toISOString().split('T')[0],
-        preferred_time: 'Morning Slot',
-        test_package: 'Home Collection Inquiry'
-      });
+            if (res.error) {
+                window.showToast(res.error, 'error');
+            } else {
+                window.showToast(`Home collection request submitted! Reference: ${res.reference_number}`, 'success');
+                e.target.reset();
+            }
+        }
 
-      if (res.error) {
-        window.showToast(res.error, 'error');
-      } else {
-        window.showToast(`Request received! Reference ID: ${res.reference_number}. Our coordinator will call you shortly.`, 'success');
-        e.target.reset();
-      }
-      btn.disabled = false;
-      btn.textContent = 'Request a Call Back';
-    }
+        function filterPackages() {
+            if (window.loadActiveOffers) {
+                window.loadActiveOffers();
+            }
+        }
+    </script>
 
-    async function handleDirectCollectionSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('direct-name').value.trim();
-      const mobile = document.getElementById('direct-mobile').value.trim();
-      const address = document.getElementById('direct-address').value.trim();
-      const test = document.getElementById('direct-test').value;
-
-      if (!name || !mobile || !address || !test) {
-        window.showToast('Please complete all required fields.', 'warning');
-        return;
-      }
-
-      const res = await window.AsterLabDB.createHomeCollectionRequest({
-        name,
-        mobile: '+91 ' + mobile,
-        address,
-        city: 'Mankara',
-        pincode: '678613',
-        preferred_date: new Date().toISOString().split('T')[0],
-        preferred_time: '07:00 AM - 10:00 AM',
-        test_package: test
-      });
-
-      if (res.error) {
-        window.showToast(res.error, 'error');
-      } else {
-        window.showToast(`Home collection request submitted! Reference: ${res.reference_number}`, 'success');
-        e.target.reset();
-      }
-    }
-
-    function filterPackages() {
-      if (window.loadActiveOffers) {
-        window.loadActiveOffers();
-      }
-    }
-  </script>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./js/config.js"></script>
-  <script src="./js/supabase.js"></script>
-  <script src="./js/animations.js"></script>
-  <script src="./js/main.js"></script>
-  <script src="./js/offers.js"></script>
+    <!-- Scripts -->
+    <script src="./js/animations.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/offers.js"></script>
 </body>
 </html>

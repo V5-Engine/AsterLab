@@ -1,10 +1,11 @@
-/**
+﻿/**
  * Aster Lab - Home Collection Form Handler
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHomeCollectionForm();
     setMinDate();
+    loadTestPackages();
 });
 
 function setMinDate() {
@@ -12,6 +13,26 @@ function setMinDate() {
     if (!dateInput) return;
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
+}
+
+async function loadTestPackages() {
+
+    const select = document.getElementById("collection-test");
+
+    if (!select) return;
+
+    const result = await window.AsterLabDB.getSelectTest();
+
+    const selectedTests = result?.data || result || [];
+
+    select.innerHTML = `
+        <option value="">Select Test or Package</option>
+        ${selectedTests.map(item => `
+            <option value="${item.title}">
+                ${item.title} (₹${Number(item.price || 0).toLocaleString("en-IN")})
+            </option>
+        `).join("")}
+    `;
 }
 
 function initHomeCollectionForm() {

@@ -1,18 +1,43 @@
-/**
+﻿/**
  * Aster Lab - Appointment Booking Form Handler
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadTestPackages();
     initAppointmentForm();
     prefillPackageFromUrl();
     setMinDate();
 });
+
+async function loadTestPackages() {
+
+    const select = document.getElementById("test-package-select");
+
+    if (!select) return;
+
+    const result = await window.AsterLabDB.getSelectTest();
+
+    const selectedTests = result?.data || result || [];
+
+    select.innerHTML = `
+        <option value="">Select Test or Package</option>
+        ${selectedTests.map(item => `
+            <option value="${item.title}">
+                ${item.title} (₹${Number(item.price || 0).toLocaleString("en-IN")})
+            </option>
+        `).join("")}
+    `;
+}
 
 // Prefill package selector if URL contains ?package=...
 function prefillPackageFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const packageParam = params.get('package');
     const select = document.getElementById('test-package-select');
+
+    console.log("select", select);
+    console.log("select length", select.options.length);
+
     if (!packageParam || !select) return;
 
     let found = false;
@@ -20,6 +45,7 @@ function prefillPackageFromUrl() {
         if (select.options[i].text.toLowerCase().includes(packageParam.toLowerCase()) || 
             select.options[i].value.toLowerCase().includes(packageParam.toLowerCase())) {
             select.selectedIndex = i;
+            console.log("Found")
             found = true;
             break;
         }

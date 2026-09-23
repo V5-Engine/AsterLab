@@ -12,6 +12,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     loadActiveOffers();
+    loadPopularTests();
+    loadTestPackages();
 });
 
 async function loadActiveOffers() {
@@ -90,14 +92,6 @@ function createOfferCard(offer, index) {
             <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
                 ${escapeHtml(offer.description)}
             </p>
-            
-            <div class="test-parameter-pills">
-                <span class="parameter-pill">GLUCOSE</span>
-                <span class="parameter-pill">TSH</span>
-                <span class="parameter-pill">LIVER</span>
-                <span class="parameter-pill">CBC</span>
-                <span class="parameter-pill">+ Vital Panels</span>
-            </div>
         </div>
 
         <div>
@@ -130,3 +124,64 @@ function escapeHtml(str) {
         "'": '&#039;'
     })[m]);
 }
+async function loadTestPackages() {
+
+    const select = document.getElementById("direct-test");
+
+    if (!select) return;
+
+    const result = await window.AsterLabDB.getSelectTest();
+
+    const selectedTests = result?.data || result || [];
+
+    select.innerHTML = `
+    <option value="">Select Test or Package</option>
+    ${selectedTests.map(item => `
+        <option value="${item.title}">
+            ${item.title} (₹${Number(item.price || 0).toLocaleString("en-IN")})
+        </option>
+    `).join("")}
+`;
+}
+async function loadPopularTests() {
+
+    const container = document.getElementById("popular-test");
+
+    if (!container) return;
+
+    var result = await window.AsterLabDB.getPopularTests();
+
+    var popularTests = result?.data || [];
+
+    container.innerHTML = popularTests.map(test => `
+        <div class="clean-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+            
+            <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                    <span>Sample: ${test.sample}</span>
+                    <span>TAT: ${test.tat}</span>
+                </div>
+
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">
+                    ${test.title}
+                </h3>
+
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                    ${test.description}
+                </p>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+                <span style="font-family: var(--font-main); font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">
+                    ₹${test.price}
+                </span>
+
+                <a href="appointment.html?package=${encodeURIComponent(test.title)}" class="btn btn-primary btn-sm">
+                    Book Test
+                </a>
+            </div>
+
+        </div>
+    `).join("");
+}
+
