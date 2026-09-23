@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Diagnostic Test | Aster Lab</title>
+  <meta name="description" content="Schedule your medical laboratory diagnostic appointment at Aster Lab. Fast, zero-wait, barcoded sample testing.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Minimal Preloader (Centrally Anchored Overlay) -->
+  <div id="page-preloader">
+    <div class="preloader-brand">ASTER LAB</div>
+    <div class="preloader-spinner"></div>
+  </div>
+
+   <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="./index.html" class="brand">
+            <img alt="navLogo" loading="lazy" width="147" height="40" decoding="async" data-nimg="1" sizes="100%"src="https://www.asterlabs.in/_next/image?url=https%3A%2F%2Fasterlab-website-images.s3.ap-south-1.amazonaws.com%2Fimages%2FAsterMainLogoHead.png&w=1920&q=60" style="color: transparent;">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./tests.html" class="nav-link">Tests</a></li>
+          <li><a href="./offers.html" class="nav-link">Health Packages</a></li>
+          <li><a href="./home-collection.html" class="nav-link">Home Collection</a></li>
+          <li><a href="./about.html" class="nav-link">About Us</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="./appointment.html" class="btn btn-primary btn-sm">Book a Test</a>
+          <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section" style="padding-top: 3.5rem; padding-bottom: 2rem; text-align: center; background: #FFFFFF;">
+    <div class="container">
+      <span class="section-tag">APPOINTMENT BOOKING</span>
+      <h1 class="section-title">Book a Diagnostic Test</h1>
+      <p class="section-subtitle" style="max-width: 600px; margin: 0 auto;">
+        Schedule a laboratory visit or request doorstep sample collection with certified pathology reporting.
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section class="section" style="background-color: var(--bg-secondary);">
+    <div class="container" style="max-width: 720px;">
+      
+      <div class="clean-card" style="padding: 2.5rem; background: #FFFFFF;">
+        <form id="appointment-form" novalidate>
+          
+          <div class="form-grid-2">
+            <!-- Full Name -->
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="patient-name" class="form-label">Full Name <span class="req">*</span></label>
+              <input type="text" id="patient-name" class="form-control" placeholder="Enter patient full name" required>
+            </div>
+
+            <!-- Mobile -->
+            <div class="form-group">
+              <label for="patient-mobile" class="form-label">Mobile Number <span class="req">*</span></label>
+              <input type="tel" id="patient-mobile" class="form-control" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="patient-email" class="form-label">Email Address</label>
+              <input type="email" id="patient-email" class="form-control" placeholder="patient@example.com">
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+              <label for="patient-age" class="form-label">Age</label>
+              <input type="number" id="patient-age" class="form-control" placeholder="e.g. 35" min="1" max="120">
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label for="patient-gender" class="form-label">Gender</label>
+              <select id="patient-gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Preferred Date -->
+            <div class="form-group">
+              <label for="appointment-date" class="form-label">Preferred Date <span class="req">*</span></label>
+              <input type="date" id="appointment-date" class="form-control" required>
+            </div>
+
+            <!-- Preferred Time -->
+            <div class="form-group">
+              <label for="appointment-time" class="form-label">Preferred Time Slot <span class="req">*</span></label>
+              <select id="appointment-time" class="form-control" required>
+                <option value="">Select Time Slot</option>
+                <option value="07:00 AM - 08:30 AM">07:00 AM - 08:30 AM (Fasting Preferred)</option>
+                <option value="08:30 AM - 10:00 AM">08:30 AM - 10:00 AM</option>
+                <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
+                <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM</option>
+                <option value="02:00 PM - 05:00 PM">02:00 PM - 05:00 PM</option>
+              </select>
+            </div>
+
+            <!-- Test / Package -->
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="test-package-select" class="form-label">Test or Health Package <span class="req">*</span></label>
+              <select id="test-package-select" class="form-control" required>
+                <option value="">Select Test or Package</option>
+                <option value="Comprehensive Full Body Vitality Screening">Comprehensive Full Body Vitality Screening (₹999)</option>
+                <option value="Advanced Cardiac & Lipid Risk Profile">Advanced Cardiac & Lipid Risk Profile (₹1,499)</option>
+                <option value="Precision Diabetes & Metabolic Health Check">Precision Diabetes & Metabolic Health Check (₹699)</option>
+                <option value="Women's Master Wellness & Hormone Spectrum">Women's Master Wellness & Hormone Spectrum (₹1,799)</option>
+                <option value="Men's Executive Health & Performance">Men's Executive Health & Performance (₹1,699)</option>
+                <option value="Essential Vitamin D & B12 Neurological Duo">Essential Vitamin D & B12 Neurological Duo (₹799)</option>
+                <option value="Complete Blood Count (CBC) with ESR">Complete Blood Count (CBC) with ESR (₹350)</option>
+                <option value="HbA1c Glycosylated Hemoglobin">HbA1c Glycosylated Hemoglobin (₹490)</option>
+                <option value="Thyroid Profile Total (T3, T4, TSH)">Thyroid Profile Total (T3, T4, TSH) (₹550)</option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label for="patient-notes" class="form-label">Notes or Special Requirements</label>
+              <textarea id="patient-notes" class="form-control" rows="3" placeholder="Fasting status, specific instructions..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" id="appointment-submit-btn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
+            Confirm Appointment Booking
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Success Confirmation Modal -->
+  <div id="booking-success-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn close-modal-trigger">&times;</button>
+      
+      <div class="success-checkmark-box">✔</div>
+
+      <div style="text-align: center;">
+        <h3 id="modal-title" style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.5rem;">Appointment Received</h3>
+        <p id="modal-msg" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Thank you. Our reception team will contact you shortly to confirm your booking.
+        </p>
+
+        <div style="background: var(--bg-tertiary); border: 1px dashed var(--border-medium); padding: 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">REFERENCE NUMBER</div>
+          <div id="modal-ref-number" style="font-family: var(--font-main); font-size: 1.4rem; font-weight: 700; color: var(--primary-blue);">AST-APT-8921</div>
+        </div>
+
+        <div id="modal-details"></div>
+
+        <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; justify-content: center;">
+          <button class="btn btn-primary btn-sm close-modal-trigger">Done</button>
+          <a href="./index.html" class="btn btn-secondary btn-sm">Return Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">ASTER LAB</div>
+          <p class="footer-desc">
+            Precision diagnostic laboratory delivering certified pathology results and doorstep sample collection.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./tests.html">Tests</a></li>
+            <li><a href="./offers.html">Health Packages</a></li>
+            <li><a href="./home-collection.html">Home Collection</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="./appointment.html">Book a Test</a></li>
+            <li><a href="./home-collection.html">Doorstep Collection</a></li>
+            <li><a href="./admin/index.html">Staff Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact Us</h4>
+          <p style="color: #94A3B8; margin-bottom: 0.5rem;">Helpline: +91 80 4567 8900</p>
+          <p style="color: #94A3B8; margin-bottom: 0.5rem;">WhatsApp: +91 8129081291</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Aster Lab. All Rights Reserved.</div>
+        <div><a href="./admin/index.html" style="color: #94A3B8;">Admin Access</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./js/config.js"></script>
+  <script src="./js/supabase.js"></script>
+  <script src="./js/animations.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/appointment.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostic Tests Directory | Aster Lab</title>
+  <meta name="description" content="Browse and search blood tests, diabetes profiles, thyroid checkups, and pathology diagnostics at Aster Lab.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/animations.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+
+  <!-- Minimal Preloader -->
+  <div id="page-preloader">
+    <div class="preloader-brand">ASTER LAB</div>
+    <div class="preloader-spinner"></div>
+  </div>
+
+    <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="./index.html" class="brand">
+            <img alt="navLogo" loading="lazy" width="147" height="40" decoding="async" data-nimg="1" sizes="100%"src="https://www.asterlabs.in/_next/image?url=https%3A%2F%2Fasterlab-website-images.s3.ap-south-1.amazonaws.com%2Fimages%2FAsterMainLogoHead.png&w=1920&q=60" style="color: transparent;">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./tests.html" class="nav-link active">Tests</a></li>
+          <li><a href="./offers.html" class="nav-link">Health Packages</a></li>
+          <li><a href="./home-collection.html" class="nav-link">Home Collection</a></li>
+          <li><a href="./about.html" class="nav-link">About Us</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="./appointment.html" class="btn btn-primary btn-sm">Book a Test</a>
+          <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section" style="padding-top: 3.5rem; padding-bottom: 2rem; text-align: center; background: #FFFFFF;">
+    <div class="container">
+      <span class="section-tag">TEST DIRECTORY</span>
+      <h1 class="section-title">Diagnostic Tests Catalog</h1>
+      <p class="section-subtitle" style="max-width: 600px; margin: 0 auto;">
+        Search individual pathology tests, biomarker panels, and specialized biochemistry profiles.
+      </p>
+
+      <!-- Search Bar & Filters -->
+      <div style="max-width: 720px; margin: 2rem auto 0 auto;">
+        <input type="text" id="test-search-input" class="form-control" placeholder="Search test by name or parameter (e.g. CBC, HbA1c, Thyroid, Lipid, Vitamin D)..." style="padding: 0.85rem 1.25rem; font-size: 1rem;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Tests Grid -->
+  <section class="section" style="background-color: var(--bg-secondary);">
+    <div class="container">
+      <div id="tests-list-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem;">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div id="no-tests-msg" style="display: none; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-primary);">No diagnostic tests found</h3>
+        <p style="font-size: 0.9rem;">Try searching for terms like "Glucose", "CBC", "Lipid", or "Thyroid".</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">ASTER LAB</div>
+          <p class="footer-desc">
+            Precision diagnostic laboratory delivering certified pathology results and doorstep sample collection.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./tests.html">Tests</a></li>
+            <li><a href="./offers.html">Health Packages</a></li>
+            <li><a href="./home-collection.html">Home Collection</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="./appointment.html">Book a Test</a></li>
+            <li><a href="./home-collection.html">Doorstep Collection</a></li>
+            <li><a href="./admin/index.html">Staff Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact Us</h4>
+          <p style="color: #94A3B8; margin-bottom: 0.5rem;">Helpline: +91 80 4567 8900</p>
+          <p style="color: #94A3B8; margin-bottom: 0.5rem;">WhatsApp: +91 8129081291</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Aster Lab. All Rights Reserved.</div>
+        <div><a href="./admin/index.html" style="color: #94A3B8;">Admin Access</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Tests Script -->
+  <script>
+    const DIAGNOSTIC_TESTS = [
+      {
+        id: "T-01",
+        title: "Complete Blood Count (CBC) with ESR",
+        category: "blood",
+        parameters: 28,
+        fasting: "No fasting required",
+        tat: "4 - 6 Hours",
+        price: 350,
+        description: "Evaluates red blood cells, white blood cells, platelets, hemoglobin, hematocrit, and erythrocyte sedimentation rate."
+      },
+      {
+        id: "T-02",
+        title: "HbA1c (Glycosylated Hemoglobin)",
+        category: "diabetes",
+        parameters: 2,
+        fasting: "Fasting not strictly required",
+        tat: "4 Hours",
+        price: 490,
+        description: "Measures average blood sugar levels over the past 3 months using Gold Standard HPLC methodology."
+      },
+      {
+        id: "T-03",
+        title: "Lipid Profile Comprehensive",
+        category: "cardiac",
+        parameters: 8,
+        fasting: "10-12 hours overnight fasting required",
+        tat: "6 Hours",
+        price: 650,
+        description: "Total Cholesterol, HDL, LDL, VLDL, Triglycerides, Non-HDL Cholesterol, and Cholesterol/HDL Ratio."
+      },
+      {
+        id: "T-04",
+        title: "Thyroid Profile Total (T3, T4, TSH)",
+        category: "thyroid",
+        parameters: 3,
+        fasting: "Morning sample preferred",
+        tat: "5 Hours",
+        price: 550,
+        description: "Assesses thyroid gland function for hyperthyroidism and hypothyroidism via ECLIA chemiluminescence."
+      },
+      {
+        id: "T-05",
+        title: "Vitamin D Total (25-Hydroxy)",
+        category: "vitamins",
+        parameters: 1,
+        fasting: "No fasting required",
+        tat: "8 Hours",
+        price: 850,
+        description: "Biomarker for bone density, calcium absorption, immune health, and chronic fatigue evaluation."
+      },
+      {
+        id: "T-06",
+        title: "Vitamin B12 (Active Cobalamin)",
+        category: "vitamins",
+        parameters: 1,
+        fasting: "Overnight fasting recommended",
+        tat: "8 Hours",
+        price: 790,
+        description: "Diagnostic indicator for megaloblastic anemia, peripheral neuropathy, and neurological vitality."
+      },
+      {
+        id: "T-07",
+        title: "Liver Function Test (LFT) with Enzymes",
+        category: "organs",
+        parameters: 11,
+        fasting: "8-10 hours fasting preferred",
+        tat: "6 Hours",
+        price: 590,
+        description: "Bilirubin (Total/Direct/Indirect), SGOT/AST, SGPT/ALT, Alkaline Phosphatase, Total Protein, and Albumin."
+      },
+      {
+        id: "T-08",
+        title: "Kidney Function & Renal Panel (KFT)",
+        category: "organs",
+        parameters: 9,
+        fasting: "Adequate hydration recommended",
+        tat: "6 Hours",
+        price: 590,
+        description: "Serum Creatinine, Blood Urea Nitrogen (BUN), Uric Acid, Sodium, Potassium, Chloride, and eGFR."
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('tests-list-grid');
+      const searchInput = document.getElementById('test-search-input');
+      const noTestsMsg = document.getElementById('no-tests-msg');
+
+      function renderTests() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+        container.innerHTML = '';
+
+        const filtered = DIAGNOSTIC_TESTS.filter(t => {
+          return !query || 
+            t.title.toLowerCase().includes(query) || 
+            t.description.toLowerCase().includes(query) || 
+            t.id.toLowerCase().includes(query);
+        });
+
+        if (filtered.length === 0) {
+          noTestsMsg.style.display = 'block';
+          return;
+        }
+
+        noTestsMsg.style.display = 'none';
+
+        filtered.forEach(test => {
+          const card = document.createElement('div');
+          card.className = 'clean-card';
+          card.style.cssText = `
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          `;
+
+          card.innerHTML = `
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">
+                <span>${test.parameters} Parameters</span>
+                <span>TAT: ${test.tat}</span>
+              </div>
+
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.4rem;">${test.title}</h3>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                ${test.description}
+              </p>
+
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">
+                <strong>Prep:</strong> ${test.fasting}
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+              <span style="font-family: var(--font-main); font-size: 1.35rem; font-weight: 700; color: var(--text-primary);">
+                ₹${test.price}
+              </span>
+              <a href="appointment.html?package=${encodeURIComponent(test.title)}" class="btn btn-primary btn-sm">
+                Book Test
+              </a>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+      }
+
+      searchInput.addEventListener('input', renderTests);
+      renderTests();
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="./js/animations.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

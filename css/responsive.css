@@ -1,0 +1,433 @@
+/* ==========================================================================
+   ASTER LAB - COMPLETE RESPONSIVE DESIGN & MOBILE LAYOUTS
+   ========================================================================== */
+
+/* Touch-Friendly Global Enhancements & iOS Input Fixes */
+button, input, select, textarea, a.btn {
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+/* Prevent iOS Auto-Zoom & Ensure Full Width Responsiveness for Form Fields */
+.form-control, select.form-control, input.form-control, textarea.form-control {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .form-control, select.form-control, input.form-control, textarea.form-control {
+    font-size: 16px !important; /* Prevents unwanted auto-zoom in iOS Safari */
+    padding: 0.7rem 0.85rem !important;
+  }
+}
+
+/* Responsive Form Grids */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* On mobile, span-all form fields should behave like normal stacked fields */
+  .form-grid-2 .form-group[style*="grid-column"] {
+    grid-column: auto !important;
+  }
+
+  /* Hide Direct Home Collection Card on Mobile per user request */
+  .direct-home-collection-card {
+    display: none !important;
+  }
+
+  .home-collection-section-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Floating Mobile Action Dock */
+.mobile-action-dock {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-medium);
+  z-index: 990;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.dock-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+.dock-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 12px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.dock-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.dock-btn.active, .dock-btn:hover {
+  color: var(--primary-blue);
+}
+
+.dock-btn.active svg, .dock-btn:hover svg {
+  stroke: var(--primary-blue);
+}
+
+.dock-btn-primary {
+  background-color: var(--primary-blue);
+  color: #FFFFFF !important;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+}
+
+.dock-btn-primary svg {
+  stroke: #FFFFFF !important;
+}
+
+/* Mobile Nav Overlay Backdrop */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 17, 40, 0.4);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+}
+
+.nav-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   BREAKPOINTS: PC -> LAPTOP -> TABLET -> MOBILE
+   ========================================================================== */
+
+/* 1. Ultra Wide & Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* 2. Standard Desktop / Laptop (1200px - 1399px) */
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2rem;
+  }
+}
+
+/* 3. Tablet Landscape & Small Laptop (992px - 1199px) */
+@media (max-width: 992px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .packages-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .filter-sidebar {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 290px;
+    height: 100vh;
+    background: #FFFFFF;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5.5rem 1.5rem 2rem 1.5rem;
+    gap: 1.25rem;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+    transition: right var(--transition-normal);
+    z-index: 1000;
+  }
+
+  .nav-menu.open {
+    right: 0;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 1.05rem;
+    width: 100%;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+  }
+
+  .nav-actions .btn {
+    display: none;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  /* Hide the hero home collection form card on tablet and below */
+  .hero-form-card {
+    display: none !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  /* Location section responsive (index.html two-column location card) */
+  .clean-card > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* 4. Tablet Portrait & Smartphone (768px - 991px) */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 60px; /* Room for mobile bottom dock */
+  }
+
+  .top-header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.35rem;
+  }
+
+  /* Ensure helpline links wrap on mobile */
+  .top-header-content > div[style*="display: flex"] {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .mobile-action-dock {
+    display: block;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-features-list li {
+    font-size: 0.9rem;
+  }
+
+  .package-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Footer: Single column on mobile */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-desc {
+    max-width: 100% !important;
+  }
+
+  /* Contact page: stack info cards and form vertically */
+  .contact-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Location section: stack two columns */
+  .location-section-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Home collection features (2x2 grid -> 1 column) */
+  .home-collection-features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Hero form card — already hidden at 992px, reinforce here */
+  .hero-form-card {
+    display: none !important;
+  }
+
+  /* Form cards padding reduction for mobile */
+  .clean-card[style*="padding: 2.5rem"],
+  .clean-card[style*="padding: 2.25rem"] {
+    padding: 1.5rem !important;
+  }
+
+  /* Ensure toast notifications don't overflow */
+  #toast-container {
+    right: 10px !important;
+    left: 10px !important;
+    max-width: none !important;
+  }
+
+  /* Statistics section text sizing */
+  .section[style*="background-color: #0A1128"] div[style*="font-size: 2.5rem"] {
+    font-size: 2rem !important;
+  }
+}
+
+/* 5. Mobile Landscape / Large Smartphone (480px - 767px) */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .hero-form-card {
+    display: none !important;
+  }
+
+  .clean-card {
+    padding: 1.25rem !important;
+  }
+
+  .section-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .package-actions {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hero buttons stack vertically on small screens */
+  .hero-section div[style*="display: flex; gap: 1rem"] {
+    flex-direction: column !important;
+  }
+
+  .hero-section .btn-lg {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  /* CTA section buttons stack */
+  .section[style*="background-color: var(--primary-blue)"] div[style*="display: flex"] {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Section padding reduction */
+  .section {
+    padding: 3rem 0;
+  }
+
+  /* Footer padding reduction */
+  .site-footer {
+    padding: 3rem 0 1.5rem 0;
+  }
+}
+
+/* 6. Small Mobile (320px - 479px) */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+
+  .top-header-bar {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .btn-lg {
+    width: 100%;
+    padding: 0.85rem 1.15rem;
+  }
+
+  .modal-card {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  /* Footer brand smaller on tiny screens */
+  .footer-brand-title {
+    font-size: 1.25rem !important;
+  }
+
+  .footer-col-title {
+    font-size: 0.95rem !important;
+  }
+
+  /* Statistics section compact */
+  .section[style*="background-color: #0A1128"] div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Dock button text size for very small screens */
+  .dock-btn {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+  }
+
+  .dock-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Testimonials single column */
+  .section > .container > div[style*="minmax(300px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
