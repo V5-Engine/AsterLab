@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     highlightActiveNavLink();
 });
 
+document.getElementById("current-year").textContent = new Date().getFullYear();
+
 // 1. Page Preloader
 function initPreloader() {
     const preloader = document.getElementById('page-preloader');
