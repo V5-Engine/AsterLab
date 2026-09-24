@@ -1,7 +1,8 @@
 /**
  * Aster Lab - Admin Portal Engine
- * Handles: Route guards, Authentication, Dashboard Metrics, Offers CRUD,
- * Appointments & Home Collection Status Management.
+ * Handles: Route guards, Role-based access (Admin vs Staff), Authentication,
+ * Dashboard Metrics, Offers CRUD, Diagnostic Tests CRUD,
+ * Appointments & Home Collection Status Management, and Audit Trail.
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -20,7 +21,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (session && isLoginPage) {
         // Already logged in on login page -> redirect to dashboard
         window.location.replace('dashboard.html');
-        sessionStorage.setItem('admin_email', session.user.email);
+        return;
+    }
+
+    // Determine Role: if email contains 'admin', rolename = 'admin', else 'staff'
+    const userEmail = session?.user?.email || sessionStorage.getItem('admin_email') || '';
+    const rolename = session?.rolename || (userEmail.toLowerCase().includes('admin') ? 'admin' : 'staff');
+    sessionStorage.setItem('admin_email', userEmail);
+    sessionStorage.setItem('admin_role', rolename);
+
+    // Route Protection for Admin-only pages (Inquiries and Audit Logs)
+    const currentPath = window.location.pathname;
+    const isAdminOnlyPage = currentPath.endsWith('inquiry.html') || currentPath.endsWith('audit-logs.html');
+
+    if (!isLoginPage && isAdminOnlyPage && rolename !== 'admin') {
+        window.location.replace('dashboard.html');
         return;
     }
 
@@ -29,10 +44,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     logoutBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.preventDefault();
+            await window.AsterLabDB.logAudit('LOGOUT', 'auth', userEmail, `User ${userEmail} logged out.`);
             await window.AsterLabDB.adminLogout();
+            sessionStorage.removeItem('admin_role');
+            sessionStorage.removeItem('admin_email');
             window.location.replace('index.html');
         });
     });
+
+    // Initialize UI Role Permissions & Mobile Navigation
+    if (!isLoginPage) {
+        applyRolePermissions(rolename, userEmail);
+        initAdminMobileNav();
+    }
 
     // Page Specific Initializers
     if (isLoginPage) {
@@ -49,8 +73,109 @@ document.addEventListener('DOMContentLoaded', async () => {
         initAdminInquiryCollections();
     } else if (window.location.pathname.endsWith('tests.html')) {
         initAdminTests();
+    } else if (window.location.pathname.endsWith('audit-logs.html')) {
+        initAdminAuditLogs();
     }
 });
+
+// ----------------- ROLE-BASED ACCESS CONTROL -----------------
+function applyRolePermissions(role, email) {
+    if (role !== 'admin') {
+        // Hide Admin-only features for Staff role
+        document.querySelectorAll('.nav-inquiries-link, a[href="inquiry.html"]').forEach(el => {
+            el.style.display = 'none';
+        });
+        document.querySelectorAll('.nav-audit-link, a[href="audit-logs.html"]').forEach(el => {
+            el.style.display = 'none';
+        });
+    }
+
+    // Render User Profile & Role summary in sidebar footer
+    const sidebarFooter = document.querySelector('.sidebar-footer');
+    if (sidebarFooter && !document.getElementById('user-profile-summary-box')) {
+        const profileBox = document.createElement('div');
+        profileBox.id = 'user-profile-summary-box';
+        profileBox.className = 'user-profile-summary';
+        profileBox.innerHTML = `
+            <div class="user-profile-role">
+                <span style="font-size: 0.72rem; color: #94A3B8; font-weight: 600;">Signed in as</span>
+                <span class="role-badge ${role}">${role.toUpperCase()}</span>
+            </div>
+            <div class="user-profile-email" title="${escapeHtml(email)}">${escapeHtml(email)}</div>
+        `;
+        sidebarFooter.insertBefore(profileBox, sidebarFooter.firstChild);
+    }
+}
+
+// ----------------- ADMIN MOBILE NAVIGATION DRAWER -----------------
+function initAdminMobileNav() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    const toggleBtn = document.getElementById('admin-sidebar-toggle');
+    const closeBtn = document.getElementById('admin-sidebar-close');
+    const backdrop = document.getElementById('admin-sidebar-backdrop');
+
+    function openSidebar() {
+        if (sidebar) sidebar.classList.add('open');
+        if (backdrop) backdrop.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('open');
+        if (backdrop) backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sidebar && sidebar.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeSidebar();
+        });
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', closeSidebar);
+    }
+
+    // Auto-close drawer on link click in mobile view
+    if (sidebar) {
+        sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 991) {
+                    closeSidebar();
+                }
+            });
+        });
+    }
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSidebar();
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+    });
+
+    // Close sidebar if window resized to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 991 && sidebar && sidebar.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+}
 
 // ----------------- ADMIN LOGIN -----------------
 function initAdminLogin() {
@@ -59,7 +184,7 @@ function initAdminLogin() {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('admin-email').value;
+        const email = document.getElementById('admin-email').value.trim();
         const password = document.getElementById('admin-password').value;
         const submitBtn = document.getElementById('login-submit-btn');
         const errorAlert = document.getElementById('login-error-alert');
@@ -78,7 +203,13 @@ function initAdminLogin() {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Sign In to Portal';
         } else {
+            const rolename = email.toLowerCase().includes('admin') ? 'admin' : 'staff';
             sessionStorage.setItem('admin_email', email);
+            sessionStorage.setItem('admin_role', rolename);
+
+            // Log authentication event in audit log
+            await window.AsterLabDB.logAudit('LOGIN', 'auth', email, `User signed in with role: ${rolename.toUpperCase()}`);
+
             window.location.replace('dashboard.html');
         }
     });
@@ -172,7 +303,6 @@ async function initAdminOffers() {
             offerForm.reset();
             document.getElementById('offer-modal-title').textContent = 'Create New Diagnostic Package';
             document.getElementById('offer-id').value = '';
-            // Default 90 days validity
             const ninetyDays = new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0];
             document.getElementById('offer-valid-until').value = ninetyDays;
             document.getElementById('offer-is-active').checked = true;
@@ -220,6 +350,7 @@ async function initAdminOffers() {
                     window.showToast(res.error, 'error');
                 } else {
                     window.showToast('Offer updated successfully!', 'success');
+                    await window.AsterLabDB.logAudit('UPDATE_OFFER', 'offer', id, `Updated package "${title}" (Price: ₹${offer_price})`);
                     offerModal.classList.remove('active');
                     await reloadOffersTable();
                 }
@@ -230,6 +361,7 @@ async function initAdminOffers() {
                     window.showToast(res.error, 'error');
                 } else {
                     window.showToast('Offer created successfully!', 'success');
+                    await window.AsterLabDB.logAudit('CREATE_OFFER', 'offer', res.data?.id || title, `Created package "${title}" (Price: ₹${offer_price})`);
                     offerModal.classList.remove('active');
                     await reloadOffersTable();
                 }
@@ -242,11 +374,11 @@ async function reloadOffersTable() {
     const tableBody = document.getElementById('admin-offers-table');
     if (!tableBody) return;
 
-    tableBody.innerHTML = `<tr><td colspan="7" class="table-empty-state">Loading offers database...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="9" class="table-empty-state">Loading offers database...</td></tr>`;
     const { data: offers, error } = await window.AsterLabDB.getAllOffersAdmin();
 
     if (error || !offers || offers.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="table-empty-state">No diagnostic packages created yet.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="9" class="table-empty-state">No diagnostic packages created yet.</td></tr>`;
         return;
     }
 
@@ -292,7 +424,7 @@ async function reloadOffersTable() {
                         })
                         : '-'
                 )}</td>
-                <td>${escapeHtml(o.updated_user)}</td>
+                <td>${escapeHtml(o.updated_user || '-')}</td>
                 <td>
                     <button class="btn btn-secondary btn-sm" onclick="openEditOfferModal('${o.id}')" style="margin-right: 4px; padding: 4px 10px; font-size: 0.78rem;">Edit</button>
                     <button class="btn btn-outline btn-sm" onclick="deleteOfferRecord('${o.id}')" style="color: #EF4444; border-color: rgba(239, 68, 68, 0.4); padding: 4px 8px; font-size: 0.78rem;">Delete</button>
@@ -321,9 +453,13 @@ window.openEditOfferModal = function (id) {
 };
 
 window.deleteOfferRecord = async function (id) {
-    if (confirm("Are you sure you want to permanently delete this health package?")) {
+    const offer = offersDataCache.find(o => o.id === id);
+    const offerTitle = offer?.title || id;
+
+    if (confirm(`Are you sure you want to permanently delete "${offerTitle}"?`)) {
         const res = await window.AsterLabDB.deleteOffer(id);
         if (res.success) {
+            await window.AsterLabDB.logAudit('DELETE_OFFER', 'offer', id, `Deleted package "${offerTitle}"`);
             window.showToast('Package removed.', 'info');
             await reloadOffersTable();
         } else {
@@ -335,13 +471,7 @@ window.deleteOfferRecord = async function (id) {
 // ----------------- ADMIN TESTS -----------------
 let testsDataCache = [];
 
-
-// =========================================================
-// INITIALIZE TEST MANAGEMENT
-// =========================================================
-
 async function initAdminTests() {
-
     const tableBody = document.getElementById('admin-tests-table');
     const addTestsBtn = document.getElementById('btn-add-tests');
     const testsModal = document.getElementById('tests-form-modal');
@@ -353,316 +483,114 @@ async function initAdminTests() {
 
     await reloadTestsTable();
 
-
-    // =====================================================
-    // ADD TEST BUTTON
-    // =====================================================
-
+    // Add Test Button
     if (addTestsBtn) {
-
         addTestsBtn.addEventListener('click', () => {
-
             testsForm.reset();
-
-            document.getElementById('tests-modal-title').textContent =
-                'Create New Diagnostic Test';
-
+            document.getElementById('tests-modal-title').textContent = 'Create New Diagnostic Test';
             document.getElementById('tests-id').value = '';
-
             document.getElementById('tests-is-active').checked = true;
-
             document.getElementById('tests-is-popular').checked = false;
-
             document.getElementById('tests-display-order').value = 0;
-
             testsModal.classList.add('active');
-
         });
-
     }
 
-
-    // =====================================================
-    // MODAL CLOSE
-    // =====================================================
-
+    // Modal Close
     testsModal.querySelectorAll('.close-modal-trigger').forEach(btn => {
-
         btn.addEventListener('click', () => {
-
             testsModal.classList.remove('active');
-
         });
-
     });
 
-
-    // =====================================================
-    // FORM SUBMIT
-    // =====================================================
-
+    // Form Submit
     testsForm.addEventListener('submit', async (e) => {
-
         e.preventDefault();
 
-
-        const id =
-            document.getElementById('tests-id').value.trim();
-
-        const title =
-            document.getElementById('tests-title').value.trim();
-
-        const category =
-            document.getElementById('tests-category').value.trim();
-
-        const description =
-            document.getElementById('tests-description').value.trim();
-
-        const parametersValue =
-            document.getElementById('tests-parameters').value;
-
-        const parameters =
-            parametersValue === ''
-                ? null
-                : parseInt(parametersValue, 10);
-
-        const tat =
-            document.getElementById('tests-tat').value.trim();
-
-        const price =
-            parseFloat(document.getElementById('tests-price').value);
-
-        const displayOrderValue =
-            document.getElementById('tests-display-order').value;
-
-        const display_order =
-            displayOrderValue === ''
-                ? 0
-                : parseInt(displayOrderValue, 10);
-
-        const fasting =
-            document.getElementById('tests-fasting').value.trim();
-
-        const is_active =
-            document.getElementById('tests-is-active').checked;
-
-        const is_popular =
-            document.getElementById('tests-is-popular').checked;
-
-
-        // =================================================
-        // VALIDATION
-        // =================================================
+        const id = document.getElementById('tests-id').value.trim();
+        const title = document.getElementById('tests-title').value.trim();
+        const category = document.getElementById('tests-category').value.trim();
+        const description = document.getElementById('tests-description').value.trim();
+        const parametersValue = document.getElementById('tests-parameters').value;
+        const parameters = parametersValue === '' ? null : parseInt(parametersValue, 10);
+        const tat = document.getElementById('tests-tat').value.trim();
+        const price = parseFloat(document.getElementById('tests-price').value);
+        const displayOrderValue = document.getElementById('tests-display-order').value;
+        const display_order = displayOrderValue === '' ? 0 : parseInt(displayOrderValue, 10);
+        const fasting = document.getElementById('tests-fasting').value.trim();
+        const is_active = document.getElementById('tests-is-active').checked;
+        const is_popular = document.getElementById('tests-is-popular').checked;
 
         if (!title) {
-
-            window.showToast(
-                'Test title is required.',
-                'error'
-            );
-
+            window.showToast('Test title is required.', 'error');
             return;
-
         }
-
 
         if (isNaN(price) || price < 0) {
-
-            window.showToast(
-                'Please enter a valid test price.',
-                'error'
-            );
-
+            window.showToast('Please enter a valid test price.', 'error');
             return;
-
         }
-
-
-        // =================================================
-        // PAYLOAD
-        // =================================================
 
         const payload = {
-
             title,
-
             category: category || null,
-
             description: description || null,
-
             parameters,
-
             tat: tat || null,
-
             price,
-
             is_popular,
-
             is_active,
-
             display_order,
-
             fasting: fasting || null
-
         };
 
-
-        // =================================================
-        // UPDATE
-        // =================================================
-
         if (id) {
-
-            const res =
-                await window.AsterLabDB.updateTest(id, payload);
-
-
+            const res = await window.AsterLabDB.updateTest(id, payload);
             if (res.error) {
-
-                window.showToast(
-                    res.error,
-                    'error'
-                );
-
+                window.showToast(res.error, 'error');
                 return;
-
             }
-
-
-            window.showToast(
-                'Test updated successfully!',
-                'success'
-            );
-
-        }
-
-
-        // =================================================
-        // CREATE
-        // =================================================
-
-        else {
-
-            const res =
-                await window.AsterLabDB.createTest(payload);
-
-
+            await window.AsterLabDB.logAudit('UPDATE_TEST', 'test', id, `Updated test "${title}" (Price: ₹${price})`);
+            window.showToast('Test updated successfully!', 'success');
+        } else {
+            const res = await window.AsterLabDB.createTest(payload);
             if (res.error) {
-
-                window.showToast(
-                    res.error,
-                    'error'
-                );
-
+                window.showToast(res.error, 'error');
                 return;
-
             }
-
-
-            window.showToast(
-                'Test created successfully!',
-                'success'
-            );
-
+            await window.AsterLabDB.logAudit('CREATE_TEST', 'test', title, `Created test "${title}" (Price: ₹${price})`);
+            window.showToast('Test created successfully!', 'success');
         }
-
 
         testsModal.classList.remove('active');
-
         await reloadTestsTable();
-
     });
-
 }
 
-
-// =========================================================
-// RELOAD TEST TABLE
-// =========================================================
-
 async function reloadTestsTable() {
+    const tableBody = document.getElementById('admin-tests-table');
+    if (!tableBody) return;
 
-    const tableBody =
-        document.getElementById('admin-tests-table');
+    tableBody.innerHTML = `<tr><td colspan="11" class="table-empty-state">Loading tests database...</td></tr>`;
 
-    if (!tableBody) {
-        return;
-    }
-
-
-    tableBody.innerHTML = `
-        <tr>
-            <td colspan="11" class="table-empty-state">
-                Loading tests database...
-            </td>
-        </tr>
-    `;
-
-
-    const result =
-        await window.AsterLabDB.getAllTestsAdmin();
-
-
+    const result = await window.AsterLabDB.getAllTestsAdmin();
     const tests = result?.data || [];
     const error = result?.error;
 
-
     if (error) {
-
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="11" class="table-empty-state">
-                    Error loading tests database.
-                </td>
-            </tr>
-        `;
-
-        console.error('Get tests error:', error);
-
+        tableBody.innerHTML = `<tr><td colspan="11" class="table-empty-state">Error loading tests database.</td></tr>`;
         return;
-
     }
-
 
     if (tests.length === 0) {
-
         testsDataCache = [];
-
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="11" class="table-empty-state">
-                    No diagnostic tests created yet.
-                </td>
-            </tr>
-        `;
-
+        tableBody.innerHTML = `<tr><td colspan="11" class="table-empty-state">No diagnostic tests created yet.</td></tr>`;
         return;
-
     }
-
 
     testsDataCache = tests;
 
-
-    // =====================================================
-    // RENDER TABLE
-    // =====================================================
-
     tableBody.innerHTML = tests.map(test => {
-
-
-        const createdDate = test.created_at
-            ? new Date(test.created_at).toLocaleString('en-IN', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            })
-            : '';
-
-
         const updatedDate = test.updated_at
             ? new Date(test.updated_at).toLocaleString('en-IN', {
                 day: '2-digit',
@@ -676,256 +604,63 @@ async function reloadTestsTable() {
 
         return `
             <tr>
-
-                <!-- TITLE -->
+                <td><strong>${escapeHtml(test.title || '')}</strong></td>
+                <td>${escapeHtml(test.category || '-')}</td>
+                <td>${test.parameters ?? '-'}</td>
+                <td>${escapeHtml(test.tat || '-')}</td>
+                <td><span style="font-weight: 700; color: #0A1128;">₹${Number(test.price || 0).toFixed(2)}</span></td>
+                <td>${escapeHtml(test.fasting || '-')}</td>
+                <td>${test.is_popular ? '<span class="status-badge confirmed" style="font-size: 0.7rem;">Popular</span>' : '<span style="color: #94A3B8;">-</span>'}</td>
+                <td><span class="status-badge ${test.is_active ? 'completed' : 'cancelled'}">${test.is_active ? 'Active' : 'Inactive'}</span></td>
+                <td>${escapeHtml(updatedDate)}</td>
+                <td>${escapeHtml(test.updated_user || '-')}</td>
                 <td>
-                    <strong>
-                        ${escapeHtml(test.title || '')}
-                    </strong>
+                    <button class="btn btn-secondary btn-sm" onclick="openEditTestModal('${test.id}')" style="margin-right: 4px; padding: 4px 10px; font-size: 0.78rem;">Edit</button>
+                    <button class="btn btn-outline btn-sm" onclick="deleteTestRecord('${test.id}')" style="color: #EF4444; border-color: rgba(239, 68, 68, 0.4); padding: 4px 8px; font-size: 0.78rem;">Delete</button>
                 </td>
-
-
-                <!-- CATEGORY -->
-                <td>
-                    ${escapeHtml(test.category || '-')}
-                </td>
-
-
-                <!-- PARAMETERS -->
-                <td>
-                    ${test.parameters ?? '-'}
-                </td>
-
-
-                <!-- TAT -->
-                <td>
-                    ${escapeHtml(test.tat || '-')}
-                </td>
-
-
-                <!-- PRICE -->
-                <td>
-                    <span style="
-                        font-weight: 700;
-                        color: #0A1128;
-                    ">
-                        ₹${Number(test.price || 0).toFixed(2)}
-                    </span>
-                </td>
-
-
-                <!-- FASTING -->
-                <td>
-                    ${escapeHtml(test.fasting || '-')}
-                </td>
-
-
-                <!-- POPULAR -->
-                <td>
-
-                    ${test.is_popular
-
-                ? `
-                            <span
-                                class="status-badge confirmed"
-                                style="font-size: 0.7rem;">
-                                Popular
-                            </span>
-                          `
-
-                : `
-                            <span style="color: #94A3B8;">
-                                -
-                            </span>
-                          `
-            }
-
-                </td>
-
-
-                <!-- STATUS -->
-                <td>
-
-                    <span class="status-badge ${test.is_active
-                ? 'completed'
-                : 'cancelled'
-            }">
-
-                        ${test.is_active
-                ? 'Active'
-                : 'Inactive'
-            }
-
-                    </span>
-
-                </td>
-
-
-                <!-- UPDATED -->
-                <td>
-                    ${escapeHtml(updatedDate)}
-                </td>
-
-
-                <!-- UPDATED USER -->
-                <td>
-                    ${escapeHtml(test.updated_user || '-')}
-                </td>
-
-
-                <!-- ACTIONS -->
-                <td>
-
-                    <button
-                        class="btn btn-secondary btn-sm"
-                        onclick="openEditTestModal('${test.id}')"
-                        style="
-                            margin-right: 4px;
-                            padding: 4px 10px;
-                            font-size: 0.78rem;
-                        ">
-                        Edit
-                    </button>
-
-
-                    <button
-                        class="btn btn-outline btn-sm"
-                        onclick="deleteTestRecord('${test.id}')"
-                        style="
-                            color: #EF4444;
-                            border-color: rgba(239, 68, 68, 0.4);
-                            padding: 4px 8px;
-                            font-size: 0.78rem;
-                        ">
-                        Delete
-                    </button>
-
-                </td>
-
             </tr>
         `;
-
     }).join('');
-
 }
 
-
-// =========================================================
-// OPEN EDIT TEST MODAL
-// =========================================================
-
 window.openEditTestModal = function (id) {
+    const test = testsDataCache.find(t => t.id === id);
+    if (!test) return;
 
-    const test =
-        testsDataCache.find(t => t.id === id);
+    document.getElementById('tests-modal-title').textContent = 'Edit Diagnostic Test';
+    document.getElementById('tests-id').value = test.id || '';
+    document.getElementById('tests-title').value = test.title || '';
+    document.getElementById('tests-category').value = test.category || '';
+    document.getElementById('tests-description').value = test.description || '';
+    document.getElementById('tests-parameters').value = test.parameters ?? '';
+    document.getElementById('tests-tat').value = test.tat || '';
+    document.getElementById('tests-price').value = test.price ?? 0;
+    document.getElementById('tests-display-order').value = test.display_order ?? 0;
+    document.getElementById('tests-fasting').value = test.fasting || '';
+    document.getElementById('tests-is-active').checked = test.is_active === true;
+    document.getElementById('tests-is-popular').checked = test.is_popular === true;
 
-    if (!test) {
-        return;
-    }
-
-
-    document.getElementById('tests-modal-title').textContent =
-        'Edit Diagnostic Test';
-
-
-    document.getElementById('tests-id').value =
-        test.id || '';
-
-
-    document.getElementById('tests-title').value =
-        test.title || '';
-
-
-    document.getElementById('tests-category').value =
-        test.category || '';
-
-
-    document.getElementById('tests-description').value =
-        test.description || '';
-
-
-    document.getElementById('tests-parameters').value =
-        test.parameters ?? '';
-
-
-    document.getElementById('tests-tat').value =
-        test.tat || '';
-
-
-    document.getElementById('tests-price').value =
-        test.price ?? 0;
-
-
-    document.getElementById('tests-display-order').value =
-        test.display_order ?? 0;
-
-
-    document.getElementById('tests-fasting').value =
-        test.fasting || '';
-
-
-    document.getElementById('tests-is-active').checked =
-        test.is_active === true;
-
-
-    document.getElementById('tests-is-popular').checked =
-        test.is_popular === true;
-
-
-    document.getElementById('tests-form-modal')
-        .classList.add('active');
-
+    document.getElementById('tests-form-modal').classList.add('active');
 };
-
-
-// =========================================================
-// DELETE TEST
-// =========================================================
 
 window.deleteTestRecord = async function (id) {
+    const test = testsDataCache.find(t => t.id === id);
+    const testName = test?.title || 'this test';
 
-    const test =
-        testsDataCache.find(t => t.id === id);
-
-
-    const testName =
-        test?.title || 'this test';
-
-
-    if (!confirm(
-        `Are you sure you want to permanently delete "${testName}"?`
-    )) {
-
+    if (!confirm(`Are you sure you want to permanently delete "${testName}"?`)) {
         return;
-
     }
 
-
-    const res =
-        await window.AsterLabDB.deleteTest(id);
-
-
+    const res = await window.AsterLabDB.deleteTest(id);
     if (res.success) {
-
-        window.showToast(
-            'Test removed successfully.',
-            'info'
-        );
-
+        await window.AsterLabDB.logAudit('DELETE_TEST', 'test', id, `Deleted test "${testName}"`);
+        window.showToast('Test removed successfully.', 'info');
         await reloadTestsTable();
-
+    } else {
+        window.showToast(res.error || 'Delete failed.', 'error');
     }
-
-    else {
-
-        window.showToast(
-            res.error || 'Delete failed.',
-            'error'
-        );
-
-    }
-
 };
+
 // ----------------- ADMIN APPOINTMENTS -----------------
 let appointmentsCache = [];
 let currentAptFilter = 'All';
@@ -933,7 +668,6 @@ let currentAptFilter = 'All';
 async function initAdminAppointments() {
     await reloadAppointmentsTable();
 
-    // Filter pills
     const pills = document.querySelectorAll('.apt-filter-pill');
     pills.forEach(pill => {
         pill.addEventListener('click', async () => {
@@ -944,7 +678,6 @@ async function initAdminAppointments() {
         });
     });
 
-    // Search
     const searchInput = document.getElementById('apt-search-input');
     if (searchInput) {
         searchInput.addEventListener('input', () => {
@@ -956,11 +689,11 @@ async function initAdminAppointments() {
 async function reloadAppointmentsTable() {
     const tableBody = document.getElementById('admin-apts-table');
     if (!tableBody) return;
-    tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Loading appointments...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Loading appointments...</td></tr>`;
 
     const { data, error } = await window.AsterLabDB.getAppointments('All');
     if (error || !data) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Error loading appointments.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Error loading appointments.</td></tr>`;
         return;
     }
     appointmentsCache = data;
@@ -987,7 +720,7 @@ function filterAndRenderAppointments() {
     }
 
     if (filtered.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">No appointments match criteria.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">No appointments match criteria.</td></tr>`;
         return;
     }
 
@@ -1001,18 +734,18 @@ function filterAndRenderAppointments() {
             <td>${escapeHtml(apt.test_package)}</td>
             <td><span class="status-badge ${apt.status.toLowerCase()}">${apt.status}</span></td>
             <td>${escapeHtml(
-        apt.updated_at
-            ? new Date(apt.updated_at).toLocaleString('en-IN', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            })
-            : '-'
-    )}</td>
-            <td>${escapeHtml(apt.updated_user)}</td>
+                apt.updated_at
+                    ? new Date(apt.updated_at).toLocaleString('en-IN', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    })
+                    : '-'
+            )}</td>
+            <td>${escapeHtml(apt.updated_user || '-')}</td>
             <td>
                 <select class="action-select" onchange="changeAppointmentStatus('${apt.id}', this.value)">
                     <option value="Pending" ${apt.status === 'Pending' ? 'selected' : ''}>Pending</option>
@@ -1026,13 +759,18 @@ function filterAndRenderAppointments() {
 }
 
 window.changeAppointmentStatus = async function (id, newStatus) {
+    const item = appointmentsCache.find(a => a.id === id);
     const res = await window.AsterLabDB.updateAppointmentStatus(id, newStatus);
     if (res.error) {
         window.showToast(res.error, 'error');
     } else {
+        await window.AsterLabDB.logAudit(
+            'UPDATE_APPOINTMENT_STATUS',
+            'appointment',
+            item?.reference_number || id,
+            `Changed patient (${item?.name || 'Unknown'}) appointment status to ${newStatus}`
+        );
         window.showToast(`Appointment status updated to ${newStatus}`, 'success');
-        // Update cache item
-        const item = appointmentsCache.find(a => a.id === id);
         if (item) item.status = newStatus;
         reloadAppointmentsTable();
     }
@@ -1066,11 +804,11 @@ async function initAdminHomeCollections() {
 async function reloadCollectionsTable() {
     const tableBody = document.getElementById('admin-cols-table');
     if (!tableBody) return;
-    tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Loading home collection requests...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Loading home collection requests...</td></tr>`;
 
     const { data, error } = await window.AsterLabDB.getHomeCollectionRequests('All');
     if (error || !data) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Error loading collection requests.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Error loading collection requests.</td></tr>`;
         return;
     }
     collectionsCache = data;
@@ -1098,7 +836,7 @@ function filterAndRenderCollections() {
     }
 
     if (filtered.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">No doorstep requests match criteria.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">No doorstep requests match criteria.</td></tr>`;
         return;
     }
 
@@ -1113,19 +851,19 @@ function filterAndRenderCollections() {
             <td>${escapeHtml(col.preferred_date)} (${escapeHtml(col.preferred_time)})</td>
             <td>${escapeHtml(col.test_package)}</td>
             <td><span class="status-badge ${col.status.toLowerCase()}">${col.status}</span></td>
-           <td>${escapeHtml(
-        col.updated_at
-            ? new Date(col.updated_at).toLocaleString('en-IN', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            })
-            : '-'
-    )}</td>
-            <td>${escapeHtml(col.updated_user)}</td>
+            <td>${escapeHtml(
+                col.updated_at
+                    ? new Date(col.updated_at).toLocaleString('en-IN', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    })
+                    : '-'
+            )}</td>
+            <td>${escapeHtml(col.updated_user || '-')}</td>
             <td>
                 <select class="action-select" onchange="changeCollectionStatus('${col.id}', this.value)">
                     <option value="Pending" ${col.status === 'Pending' ? 'selected' : ''}>Pending</option>
@@ -1139,18 +877,24 @@ function filterAndRenderCollections() {
 }
 
 window.changeCollectionStatus = async function (id, newStatus) {
+    const item = collectionsCache.find(c => c.id === id);
     const res = await window.AsterLabDB.updateHomeCollectionStatus(id, newStatus);
     if (res.error) {
         window.showToast(res.error, 'error');
     } else {
+        await window.AsterLabDB.logAudit(
+            'UPDATE_COLLECTION_STATUS',
+            'home_collection',
+            item?.reference_number || id,
+            `Changed doorstep collection (${item?.name || 'Unknown'}) status to ${newStatus}`
+        );
         window.showToast(`Doorstep request status updated to ${newStatus}`, 'success');
-        const item = collectionsCache.find(c => c.id === id);
         if (item) item.status = newStatus;
         reloadCollectionsTable();
     }
 };
 
-// ----------------- ADMIN Inquiry COLLECTIONS -----------------
+// ----------------- ADMIN INQUIRY COLLECTIONS -----------------
 let InquiryCache = [];
 let currentInqFilter = 'All';
 
@@ -1178,11 +922,11 @@ async function initAdminInquiryCollections() {
 async function reloadInquiryCollectionsTable() {
     const tableBody = document.getElementById('admin-inq-table');
     if (!tableBody) return;
-    tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Loading inquiry requests...</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Loading inquiry requests...</td></tr>`;
 
     const { data, error } = await window.AsterLabDB.getInquiryRequests('All');
     if (error || !data) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">Error loading inquiry requests.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">Error loading inquiry requests.</td></tr>`;
         return;
     }
     InquiryCache = data;
@@ -1210,7 +954,7 @@ function filterAndRenderInquiry() {
     }
 
     if (filtered.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="8" class="table-empty-state">No inquiry requests match criteria.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="10" class="table-empty-state">No inquiry requests match criteria.</td></tr>`;
         return;
     }
 
@@ -1235,7 +979,7 @@ function filterAndRenderInquiry() {
                     })
                     : '-'
             )}</td>
-            <td>${escapeHtml(col.updated_user)}</td>
+            <td>${escapeHtml(col.updated_user || '-')}</td>
             <td>
                 <select class="action-select" onchange="changeInquiryStatus('${col.id}', this.value)">
                     <option value="Pending" ${col.status === 'Pending' ? 'selected' : ''}>Pending</option>
@@ -1249,17 +993,140 @@ function filterAndRenderInquiry() {
 }
 
 window.changeInquiryStatus = async function (id, newStatus) {
+    const item = InquiryCache.find(c => c.id === id);
     const res = await window.AsterLabDB.updateInquiryStatus(id, newStatus);
     if (res.error) {
         window.showToast(res.error, 'error');
     } else {
+        await window.AsterLabDB.logAudit(
+            'UPDATE_INQUIRY_STATUS',
+            'inquiry',
+            item?.reference_id || id,
+            `Changed inquiry (${item?.name || 'Customer'}) status to ${newStatus}`
+        );
         window.showToast(`Inquiry request status updated to ${newStatus}`, 'success');
-        const item = InquiryCache.find(c => c.id === id);
         if (item) item.status = newStatus;
         reloadInquiryCollectionsTable();
     }
 };
 
+// ----------------- ADMIN AUDIT LOGS MANAGEMENT (ADMIN ONLY) -----------------
+let auditLogsCache = [];
+let currentAuditFilter = 'All';
+
+async function initAdminAuditLogs() {
+    await reloadAuditLogsTable();
+
+    const pills = document.querySelectorAll('.audit-filter-pill');
+    pills.forEach(pill => {
+        pill.addEventListener('click', async () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            currentAuditFilter = pill.getAttribute('data-filter');
+            filterAndRenderAuditLogs();
+        });
+    });
+
+    const searchInput = document.getElementById('audit-search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            filterAndRenderAuditLogs();
+        });
+    }
+
+    const refreshBtn = document.getElementById('btn-refresh-audit');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', async () => {
+            refreshBtn.disabled = true;
+            await reloadAuditLogsTable();
+            refreshBtn.disabled = false;
+            window.showToast('Audit trail refreshed.', 'info');
+        });
+    }
+}
+
+async function reloadAuditLogsTable() {
+    const tableBody = document.getElementById('admin-audit-table');
+    if (!tableBody) return;
+    tableBody.innerHTML = `<tr><td colspan="6" class="table-empty-state">Loading audit trail records...</td></tr>`;
+
+    const { data, error } = await window.AsterLabDB.getAuditLogs('All');
+    if (error || !data) {
+        tableBody.innerHTML = `<tr><td colspan="6" class="table-empty-state">Error loading audit logs.</td></tr>`;
+        return;
+    }
+    auditLogsCache = data;
+    filterAndRenderAuditLogs();
+}
+
+function filterAndRenderAuditLogs() {
+    const tableBody = document.getElementById('admin-audit-table');
+    const searchVal = (document.getElementById('audit-search-input')?.value || '').toLowerCase();
+    if (!tableBody) return;
+
+    let filtered = auditLogsCache;
+
+    if (currentAuditFilter !== 'All') {
+        const f = currentAuditFilter.toLowerCase();
+        filtered = filtered.filter(l => 
+            (l.entity_type || '').toLowerCase() === f ||
+            (l.action || '').toLowerCase().includes(f)
+        );
+    }
+
+    if (searchVal) {
+        filtered = filtered.filter(l =>
+            (l.user_email || '').toLowerCase().includes(searchVal) ||
+            (l.action || '').toLowerCase().includes(searchVal) ||
+            (l.entity_type || '').toLowerCase().includes(searchVal) ||
+            (l.entity_id || '').toLowerCase().includes(searchVal) ||
+            (l.details || '').toLowerCase().includes(searchVal)
+        );
+    }
+
+    if (filtered.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="6" class="table-empty-state">No audit logs match criteria.</td></tr>`;
+        return;
+    }
+
+    tableBody.innerHTML = filtered.map(log => {
+        const timeStr = log.created_at
+            ? new Date(log.created_at).toLocaleString('en-IN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            })
+            : '-';
+
+        const actionType = (log.action || '').toUpperCase();
+        let actionClass = 'update';
+        if (actionType.includes('CREATE')) actionClass = 'create';
+        else if (actionType.includes('DELETE')) actionClass = 'delete';
+        else if (actionType.includes('LOGIN') || actionType.includes('LOGOUT') || actionType.includes('AUTH')) actionClass = 'auth';
+
+        const role = (log.role || 'staff').toLowerCase();
+
+        return `
+            <tr>
+                <td style="white-space: nowrap; font-size: 0.82rem; color: #64748B;">${escapeHtml(timeStr)}</td>
+                <td><strong>${escapeHtml(log.user_email || '-')}</strong></td>
+                <td><span class="role-badge ${role}">${role.toUpperCase()}</span></td>
+                <td><span class="action-tag ${actionClass}">${escapeHtml(log.action || '-')}</span></td>
+                <td style="font-size: 0.82rem; color: #475569;">
+                    <span style="text-transform: capitalize; font-weight: 600;">${escapeHtml(log.entity_type || '-')}</span>
+                    ${log.entity_id ? `<br><small style="color: #94A3B8;">ID: ${escapeHtml(log.entity_id)}</small>` : ''}
+                </td>
+                <td style="font-size: 0.85rem; max-width: 320px;">${escapeHtml(log.details || '-')}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// ----------------- UTILITIES -----------------
 function escapeHtml(str) {
     if (!str) return '';
     return String(str).replace(/[&<>"']/g, m => ({
@@ -1315,4 +1182,3 @@ window.showToast = function (message, type = 'info') {
         setTimeout(() => toast.remove(), 300);
     }, 4000);
 };
-

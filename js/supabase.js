@@ -2081,39 +2081,114 @@
         // ========================================================
         // GET ADMIN SESSION
         // ========================================================
-
         async getAdminSession() {
-
+            let session = null;
             if (client) {
-
                 try {
-
                     const {
                         data: {
-                            session
+                            session: liveSession
                         }
-                    } =
-                        await client.auth.getSession();
-
-
-                    return session;
-
+                    } = await client.auth.getSession();
+                    session = liveSession;
                 } catch (e) {
-
-                    return null;
+                    session = null;
                 }
             }
 
+            if (!session) {
+                const sessionRaw = localStorage.getItem("asterlab_admin_session");
+                session = sessionRaw ? JSON.parse(sessionRaw) : null;
+            }
 
-            const sessionRaw =
-                localStorage.getItem(
-                    "asterlab_admin_session"
+            if (session) {
+                const email = session.user?.email || '';
+                const rolename = email.toLowerCase().includes('admin') ? 'admin' : 'staff';
+                session.rolename = rolename;
+                if (session.user) {
+                    session.user.rolename = rolename;
+                }
+            }
+
+            return session;
+        },
+
+        // ========================================================
+        // AUDIT LOGGING SERVICE
+        // ========================================================
+        async logAudit(action, entityType, entityId, details, metadata = {}) {
+            try {
+                const session = await this.getAdminSession();
+                const userEmail = session?.user?.email || 'system';
+                const role = session?.rolename || (userEmail.toLowerCase().includes('admin') ? 'admin' : 'staff');
+
+                const logEntry = {
+                    id: 'log-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7),
+                    created_at: new Date().toISOString(),
+                    user_email: userEmail,
+                    role: role,
+                    action: action,
+                    entity_type: entityType,
+                    entity_id: entityId ? String(entityId) : null,
+                    details: details || '',
+                    metadata: metadata
+                };
+
+                // Try inserting to live Supabase audit_logs table
+                if (client) {
+                    try {
+                        await client.from('audit_logs').insert([{
+                            user_email: userEmail,
+                            role: role,
+                            action: action,
+                            entity_type: entityType,
+                            entity_id: entityId ? String(entityId) : null,
+                            details: details || '',
+                            metadata: metadata
+                        }]);
+                    } catch (dbErr) {
+                        console.warn('Supabase audit_logs insert note:', dbErr.message);
+                    }
+                }
+
+                // Keep in local storage for fallback/demo
+                const logs = getStorage('audit_logs', []);
+                logs.unshift(logEntry);
+                if (logs.length > 500) logs.pop();
+                setStorage('audit_logs', logs);
+
+                return { success: true, data: logEntry };
+            } catch (err) {
+                console.error('logAudit error:', err);
+                return { success: false, error: err.message };
+            }
+        },
+
+        async getAuditLogs(filter = 'All') {
+            if (client) {
+                try {
+                    let query = client.from('audit_logs').select('*').order('created_at', { ascending: false });
+                    if (filter && filter !== 'All') {
+                        query = query.eq('entity_type', filter.toLowerCase());
+                    }
+                    const { data, error } = await query;
+                    if (!error && data && data.length > 0) {
+                        return { data, error: null };
+                    }
+                } catch (err) {
+                    console.warn('Supabase getAuditLogs fallback note:', err.message);
+                }
+            }
+
+            let logs = getStorage('audit_logs', []);
+            if (filter && filter !== 'All') {
+                const f = filter.toLowerCase();
+                logs = logs.filter(l => 
+                    (l.entity_type || '').toLowerCase() === f || 
+                    (l.action || '').toLowerCase().includes(f)
                 );
-
-
-            return sessionRaw
-                ? JSON.parse(sessionRaw)
-                : null;
+            }
+            return { data: logs, error: null };
         }
 
     };

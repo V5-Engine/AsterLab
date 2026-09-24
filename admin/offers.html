@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>Mankara Staff Portal</title>
+    <title>Mankara Staff Portal</title>
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
@@ -18,12 +18,18 @@
 
   <div class="admin-layout">
     
+    <!-- Sidebar Backdrop for Mobile -->
+    <div class="admin-sidebar-backdrop" id="admin-sidebar-backdrop"></div>
+
     <!-- Sidebar -->
     <aside class="admin-sidebar">
       <div class="sidebar-header">
         <a href="./index.html" class="brand">
            <img alt="navLogo" loading="lazy" width="147" height="40" decoding="async" data-nimg="1" sizes="100%" src="../favicon_io/AsterlabMainLogoHead.png" style="color: transparent;">
         </a>
+        <button class="sidebar-close-btn" id="admin-sidebar-close" aria-label="Close Sidebar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
 
       <nav class="sidebar-nav">
@@ -51,12 +57,22 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               Home Collections
           </a>
-          <a href="inquiry.html" class="sidebar-link">
+          <a href="inquiry.html" class="sidebar-link nav-inquiries-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="3" y="5" width="18" height="14" rx="2"></rect>
                   <polyline points="3 7 12 13 21 7"></polyline>
               </svg>
               Inquiries
+          </a>
+          <a href="audit-logs.html" class="sidebar-link nav-audit-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Audit Logs
           </a>
       </nav>
 
@@ -76,11 +92,20 @@
     <main class="admin-main">
       
       <div class="admin-topbar">
-        <div class="admin-title-area">
-          <h1>Health Package & Offer Management</h1>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Create, edit, or retire promotional diagnostic packages dynamically synced to Supabase.</p>
+        <div class="admin-topbar-left">
+          <button class="admin-menu-toggle" id="admin-sidebar-toggle" aria-label="Toggle Navigation Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="admin-title-area">
+            <h1>Health Package & Offer Management</h1>
+            <p>Create, edit, or retire promotional diagnostic packages dynamically synced to Supabase.</p>
+          </div>
         </div>
-        <div>
+        <div class="admin-topbar-actions">
           <button id="btn-add-offer" class="btn btn-primary btn-sm">
             <svg style="width: 16px; height: 16px; stroke: currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Create New Package
@@ -99,14 +124,14 @@
                 <th>Pricing</th>
                 <th>Valid Until</th>
                 <th>Status</th>
-                  <th>Created At</th>
-                  <th>Updated At</th>
-                  <th>Updated By</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Updated By</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody id="admin-offers-table">
-              <tr><td colspan="6" class="table-empty-state">Loading offers database...</td></tr>
+              <tr><td colspan="9" class="table-empty-state">Loading offers database...</td></tr>
             </tbody>
           </table>
         </div>
@@ -116,12 +141,12 @@
 
   </div>
 
-  <!-- Create / Edit Offer Modal (Item 14) -->
+  <!-- Create / Edit Offer Modal -->
   <div id="offer-form-modal" class="modal-overlay" role="dialog" aria-modal="true">
-    <div class="modal-card" style="max-width: 600px;">
+    <div class="modal-card">
       <button class="modal-close-btn close-modal-trigger">&times;</button>
       
-      <h3 id="offer-modal-title" style="font-size: 1.4rem; color: #0A1128; margin-bottom: 1.5rem;">Create Diagnostic Package</h3>
+      <h3 id="offer-modal-title" style="font-size: 1.35rem; color: #0A1128; margin-bottom: 1.25rem;">Create Diagnostic Package</h3>
 
       <form id="admin-offer-form">
         <input type="hidden" id="offer-id">
@@ -136,7 +161,7 @@
           <textarea id="offer-desc" class="form-control" rows="3" placeholder="Key clinical parameters, organ profiles covered..." required></textarea>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+        <div class="admin-form-grid-2">
           <div class="form-group">
             <label for="offer-orig-price" class="form-label">Original Price (₹) <span class="req">*</span></label>
             <input type="number" id="offer-orig-price" class="form-control" placeholder="2499" min="0" step="1" required>
@@ -148,7 +173,7 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+        <div class="admin-form-grid-2">
           <div class="form-group">
             <label for="offer-valid-until" class="form-label">Valid Until Date <span class="req">*</span></label>
             <input type="date" id="offer-valid-until" class="form-control" required>
@@ -160,7 +185,7 @@
           </div>
         </div>
 
-        <div style="display: flex; gap: 2rem; margin-top: 0.5rem; margin-bottom: 1.5rem;">
+        <div class="admin-checkbox-group">
           <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
             <input type="checkbox" id="offer-is-active" checked style="width: 18px; height: 18px; accent-color: #0284C7;">
             Active / Published on Public Site
@@ -172,7 +197,7 @@
           </label>
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <div class="admin-modal-actions">
           <button type="button" class="btn btn-secondary btn-sm close-modal-trigger">Cancel</button>
           <button type="submit" class="btn btn-primary btn-sm">Save Diagnostic Package</button>
         </div>
