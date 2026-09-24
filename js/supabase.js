@@ -866,9 +866,6 @@
                     Date.now(),
 
                 created_at:
-                    new Date().toISOString(),
-
-                updated_at:
                     new Date().toISOString()
             };
 
@@ -904,8 +901,8 @@
                             .from("offers")
                             .update({
                                 ...updateData,
-                                updated_at:
-                                    new Date().toISOString()
+                                updated_at: new Date().toISOString(),
+                                updated_user: (await this.getAdminSession()).user.email.split('@')[0]
                             })
                             .eq("id", id)
                             .select();
@@ -986,39 +983,22 @@
 
                 try {
 
-                    const { error } =
-                        await client
-                            .from("offers")
-                            .delete()
-                            .eq("id", id);
+                    const { error } =await client.from("offers").delete().eq("id", id);
 
                     if (error) throw error;
 
-                    return {
-                        success: true,
-                        error: null
-                    };
+                    return {success: true,error: null};
 
                 } catch (err) {
 
-                    return {
-                        success: false,
-                        error: err.message
-                    };
+                    return {success: false,error: err.message};
                 }
             }
 
 
-            let all =
-                getStorage(
-                    "offers",
-                    DEFAULT_OFFERS
-                );
+            let all =getStorage("offers",DEFAULT_OFFERS);
 
-            all =
-                all.filter(
-                    o => o.id !== id
-                );
+            all = all.filter(o => o.id !== id);
 
             setStorage(
                 "offers",
@@ -1253,13 +1233,11 @@
             if (client) {
 
                 try {
-
+                    var session = await this.getAdminSession();
                     const { data, error } =
                         await client
                             .from("appointments")
-                            .update({
-                                status: newStatus
-                            })
+                            .update({ status: newStatus, updated_user: session.user.email.split('@')[0], updated_at: new Date().toISOString() })
                             .eq("id", id)
                             .select();
 
@@ -1648,6 +1626,7 @@
             if (client) {
 
                 try {
+                    var session = await this.getAdminSession();
 
                     const { data, error } =
                         await client
@@ -1655,7 +1634,9 @@
                                 "home_collection_requests"
                             )
                             .update({
-                                status: newStatus
+                                status: newStatus,
+                                updated_user: session.user.email.split('@')[0],
+                                updated_at: new Date().toISOString()
                             })
                             .eq("id", id)
                             .select();
@@ -1727,33 +1708,49 @@
             };
         },
 
-
+        
         // ========================================================
-        // ADMIN LOGIN
+        // Inquiry 
         // ========================================================
-
-        async adminLogin(
-            email,
-            password
+        async getInquiryRequests(
+            statusFilter = "All"
         ) {
 
             if (client) {
 
                 try {
 
+                    let query =
+                        client
+                            .from(
+                                "enquiries"
+                            )
+                            .select("*")
+                            .order(
+                                "created_at",
+                                {
+                                    ascending: false
+                                }
+                            );
+
+
+                    if (
+                        statusFilter &&
+                        statusFilter !== "All"
+                    ) {
+
+                        query =
+                            query.eq(
+                                "status",
+                                statusFilter
+                            );
+                    }
+
+
                     const {
                         data,
                         error
-                    } =
-                        await client.auth
-                            .signInWithPassword({
-
-                                email:
-                                    email.trim(),
-
-                                password:
-                                    password
-                            });
+                    } = await query;
 
 
                     if (error)
@@ -1762,11 +1759,8 @@
 
                     return {
 
-                        session:
-                            data.session,
-
-                        user:
-                            data.user,
+                        data:
+                            data || [],
 
                         error: null
                     };
@@ -1775,14 +1769,221 @@
 
                     return {
 
-                        session: null,
-
-                        user: null,
+                        data: null,
 
                         error:
-                            err.message ||
-                            "Invalid login credentials."
+                            err.message
                     };
+                }
+            }
+            return {
+
+                data: null,
+
+                error: "No data found"
+            };
+        },
+
+        async updateInquiryStatus(
+            id,
+            newStatus
+        ) {
+
+            if (client) {
+
+                try {
+                    var session = await this.getAdminSession();
+
+                    const { data, error } =
+                        await client
+                            .from(
+                                "enquiries"
+                            )
+                            .update({
+                                status: newStatus,
+                                updated_user: session.user.email.split('@')[0],
+                                updated_at: new Date().toISOString()
+                            })
+                            .eq("id", id)
+                            .select();
+
+                    if (error) throw error;
+
+                    return {
+
+                        data:
+                            data
+                                ? data[0]
+                                : null,
+
+                        error: null
+                    };
+
+                } catch (err) {
+
+                    return {
+
+                        data: null,
+
+                        error:
+                            err.message
+                    };
+                }
+            }
+            return {
+
+                data: null,
+
+                error:
+                    "Inquiry request not found."
+            };
+        },
+
+
+        // ========================================================
+        // ADMIN Test
+        // ========================================================
+
+        async getAllTestsAdmin() {
+
+            const { data, error } = await client
+                .from('tests')
+                .select('*')
+                .order('display_order', { ascending: true })
+                .order('title', { ascending: true });
+            return {
+                data,
+                error
+            };
+        },
+
+        async deleteTest(id) {
+
+            if (client) {
+
+                try {
+
+                    const { error } = await client.from("tests").delete().eq("id", id);
+
+                    if (error) throw error;
+
+                    return { success: true, error: null };
+
+                } catch (err) {
+
+                    return { success: false, error: err.message };
+                }
+            }
+
+
+            let all = getStorage("tests", DEFAULT_OFFERS);
+
+            all = all.filter(o => o.id !== id);
+
+            setStorage(
+                "tests",
+                all
+            );
+
+
+            return {
+                success: true,
+                error: null
+            };
+        },
+
+        async updateTest(id, payload) {
+
+            const session = await this.getAdminSession();
+
+            const { data, error } = await client
+                .from('tests')
+                .update({
+                    ...payload,
+                    updated_at: new Date().toISOString(),
+                    updated_user: session?.user?.email
+                        ? session.user.email.split('@')[0]
+                        : null
+                })
+                .eq('id', id)
+                .select()
+                .single();
+
+            return {
+                data,
+                error
+            };
+        },
+
+        async createTest(testData) {
+
+            if (client) {
+
+                try {
+
+                    const { data, error } =
+                        await client
+                            .from("tests")
+                            .insert([testData])
+                            .select();
+
+                    if (error) throw error;
+
+                    return {data:data? data[0]: null,error: null};
+
+                } catch (err) {
+
+                    return {data: null,error: err.message};
+                }
+            }
+
+
+            const all =
+                getStorage(
+                    "tests",
+                    DEFAULT_TESTS
+                );
+
+            const newTest = {
+
+                ...testData,
+                created_at:new Date().toISOString()
+            };
+
+            all.unshift(newTest);
+
+            setStorage(
+                "tests",
+                all
+            );
+
+            return {
+                data: newTest,
+                error: null
+            };
+        },
+
+        // ========================================================
+        // ADMIN LOGIN
+        // ========================================================
+
+        async adminLogin(email, password)
+        {
+
+            if (client) {
+
+                try {
+
+                    const {data,error} =await client.auth.signInWithPassword({email:email.trim(),password:password});
+
+                    if (error)throw error;
+
+
+                    return {session:data.session,user:data.user,error: null};
+
+                } catch (err) {
+
+                    return {session: null,user: null,error:err.message ||"Invalid login credentials."};
                 }
             }
 
