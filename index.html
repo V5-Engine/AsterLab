@@ -697,15 +697,7 @@
     <script src="./js/supabase.js"></script>
     <script>document.getElementById("current-year").textContent = new Date().getFullYear();</script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            Swal.fire({
-                icon: "info",
-                title: "We're in Beta 🚀",
-                text: "This website is currently in beta. You may notice some features are still being improved.",
-                confirmButtonText: "Got it",
-                allowOutsideClick: false
-            });
-        });
+       
         async function handleHeroFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('hero-name').value.trim();
